@@ -628,3 +628,112 @@ body::before {
 @media (max-width: 768px) {
   .legal-layout { padding: 0 32px 80px; }
 }
+
+/* ============================================
+   404 NOT FOUND PAGE
+   ============================================ */
+
+.not-found-main {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 0 96px;
+  position: relative;
+  overflow: hidden;
+}
+
+.not-found-glow {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -55%);
+  width: 700px; height: 500px;
+  background: radial-gradient(ellipse, rgba(201,169,110,0.06) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+.not-found-bg-num {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-cormorant, serif);
+  font-size: clamp(200px, 30vw, 400px);
+  font-weight: 300;
+  color: rgba(201,169,110,0.04);
+  letter-spacing: -0.05em;
+  user-select: none;
+  pointer-events: none;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.not-found-content {
+  position: relative;
+  z-index: 2;
+}
+
+.not-found-title {
+  font-family: var(--font-cormorant, serif);
+  font-size: clamp(48px, 7vw, 96px);
+  font-weight: 300;
+  line-height: 1.0;
+  color: var(--cream);
+  margin-bottom: 24px;
+}
+
+.not-found-desc {
+  font-family: var(--font-geist-mono, monospace);
+  font-size: 13px;
+  line-height: 1.8;
+  color: var(--cream-dim);
+  max-width: 420px;
+  margin-bottom: 56px;
+}
+
+.not-found-actions {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.not-found-home-btn {
+  font-family: var(--font-geist-mono, monospace);
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  background: var(--gold);
+  color: var(--bg);
+  padding: 16px 40px;
+  border-radius: 2px;
+  text-decoration: none;
+  transition: opacity 0.3s;
+  display: inline-block;
+}
+.not-found-home-btn:hover { opacity: 0.85; }
+
+.not-found-links {
+  margin-top: 64px;
+  padding-top: 40px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+.not-found-link {
+  font-family: var(--font-geist-mono, monospace);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--cream-dim);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+.not-found-link:hover { color: var(--gold); }
+
+@media (max-width: 768px) {
+  .not-found-main { padding: 0 32px; }
+  .not-found-links { gap: 20px; }
+}

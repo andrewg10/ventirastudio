@@ -1,5 +1,51 @@
 import { NextRequest, NextResponse } from "next/server";
 
+// ─── In-memory rate limiter ───────────────────────────────────────────────────
+// Max 3 submissions per IP per 15 minutes.
+// Map is module-level — persists across requests in the same process.
+const RATE_MAP = new Map<string, { count: number; resetAt: number }>();
+const MAX_REQUESTS = 3;
+const WINDOW_MS = 15 * 60 * 1000; // 15 minutes
+
+function getClientIP(req: NextRequest): string {
+  return (
+    req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ??
+    req.headers.get("x-real-ip") ??
+    "unknown"
+  );
+}
+
+function checkRateLimit(ip: string): { allowed: boolean; retryAfter: number } {
+  const now = Date.now();
+  const entry = RATE_MAP.get(ip);
+
+  if (!entry || now > entry.resetAt) {
+    // First request or window expired — reset
+    RATE_MAP.set(ip, { count: 1, resetAt: now + WINDOW_MS });
+    return { allowed: true, retryAfter: 0 };
+  }
+
+  if (entry.count >= MAX_REQUESTS) {
+    const retryAfter = Math.ceil((entry.resetAt - now) / 1000);
+    return { allowed: false, retryAfter };
+  }
+
+  entry.count++;
+  return { allowed: true, retryAfter: 0 };
+}
+
+// Cleanup old entries every 100 requests to avoid memory leaks
+let cleanupCounter = 0;
+function maybeCleanup() {
+  if (++cleanupCounter % 100 !== 0) return;
+  const now = Date.now();
+  for (const [ip, entry] of RATE_MAP.entries()) {
+    if (now > entry.resetAt) RATE_MAP.delete(ip);
+  }
+}
+
+// ─── Validation ───────────────────────────────────────────────────────────────
+
 interface ContactPayload {
   name: string;
   email: string;
@@ -15,10 +61,34 @@ function validate(body: Partial<ContactPayload>): string | null {
   if (!body.message?.trim() || body.message.trim().length < 20)
     return "Mesajul trebuie să aibă cel puțin 20 de caractere.";
   if (!body.service) return "Te rugăm să selectezi un serviciu.";
+  // Sanity check — prevent absurdly large payloads
+  if (body.message.length > 5000) return "Mesajul este prea lung.";
   return null;
 }
 
+// ─── Handler ──────────────────────────────────────────────────────────────────
+
 export async function POST(req: NextRequest) {
+  // Rate limit check
+  const ip = getClientIP(req);
+  maybeCleanup();
+  const { allowed, retryAfter } = checkRateLimit(ip);
+
+  if (!allowed) {
+    return NextResponse.json(
+      { error: `Prea multe cereri. Încearcă din nou în ${Math.ceil(retryAfter / 60)} minute.` },
+      {
+        status: 429,
+        headers: {
+          "Retry-After": String(retryAfter),
+          "X-RateLimit-Limit": String(MAX_REQUESTS),
+          "X-RateLimit-Remaining": "0",
+        },
+      }
+    );
+  }
+
+  // Parse body
   let body: Partial<ContactPayload>;
   try {
     body = await req.json();
@@ -26,19 +96,20 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Request invalid." }, { status: 400 });
   }
 
+  // Validate
   const validationError = validate(body);
   if (validationError) {
     return NextResponse.json({ error: validationError }, { status: 422 });
   }
 
-  // If no API key — return success in dev, warn in prod
+  // Skip email send if no API key (dev mode)
   if (!process.env.RESEND_API_KEY) {
-    console.warn("[contact] RESEND_API_KEY not set. Set it in Railway env vars.");
+    console.warn("[contact] RESEND_API_KEY not set — skipping email send.");
     return NextResponse.json({ success: true });
   }
 
+  // Send email
   try {
-    // Lazy import so Resend is only instantiated when the key exists
     const { Resend } = await import("resend");
     const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -64,6 +135,9 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ success: true });
   } catch (err) {
     console.error("[contact] Send error:", err);
-    return NextResponse.json({ error: "Eroare la trimiterea mesajului. Încearcă din nou." }, { status: 500 });
+    return NextResponse.json(
+      { error: "Eroare la trimiterea mesajului. Încearcă din nou." },
+      { status: 500 }
+    );
   }
 }
