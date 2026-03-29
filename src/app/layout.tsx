@@ -2,9 +2,6 @@ import type { Metadata } from "next";
 import { GeistMono } from "geist/font/mono";
 import "./globals.css";
 
-// NOTE: Cormorant Garamond is loaded via Google Fonts CSS in globals.css
-// as a fallback-safe approach. next/font/google requires network access at build time.
-
 export const metadata: Metadata = {
   title: "Ventira Studio — Agenție AI din România",
   description:
@@ -27,12 +24,24 @@ export default function RootLayout({
   return (
     <html lang="ro" className={GeistMono.variable}>
       <head>
-        {/* Cormorant Garamond — loaded directly for build-time safety */}
+        {/* Cormorant Garamond */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
           href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap"
           rel="stylesheet"
+        />
+        {/* Google Ads — AW-17916020292 */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17916020292" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'AW-17916020292');
+            `,
+          }}
         />
       </head>
       <body>{children}</body>
