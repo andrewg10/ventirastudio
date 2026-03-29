@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   description:
     "Construim agenți AI care automatizează rezervările, contabilitatea și suportul pentru afaceri din România.",
   keywords: ["agentie AI Romania", "automatizare AI", "AI receptionist", "Ventira Studio"],
+  metadataBase: new URL("https://ventirastudio.ro"),
   openGraph: {
     title: "Ventira Studio — Agenție AI din România",
     description: "Agenți AI care lucrează non-stop pentru afacerea ta.",
@@ -15,6 +16,29 @@ export const metadata: Metadata = {
     siteName: "Ventira Studio",
     locale: "ro_RO",
     type: "website",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Ventira Studio — Agenție AI din România",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Ventira Studio — Agenție AI din România",
+    description: "Agenți AI care lucrează non-stop pentru afacerea ta.",
+    images: ["/og-image.png"],
+  },
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/icon-192.png", sizes: "192x192", type: "image/png" },
+    ],
+    apple: [
+      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+    ],
   },
   robots: { index: true, follow: true },
 };
@@ -33,9 +57,9 @@ export default function RootLayout({
           rel="stylesheet"
         />
         {/*
-          Google Consent Mode v2 — default DENIED for EEA users.
-          Must be the FIRST script on the page, before any gtag/GA/Ads loads.
-          Actual tracking scripts are loaded by CookieConsent only after user accepts.
+          Google Consent Mode v2 — default DENIED pentru utilizatori EEA.
+          Trebuie să fie primul script pe pagină, înaintea oricărui gtag/GA/Ads.
+          Scripturile de tracking sunt încărcate de CookieConsent doar după accept.
         */}
         <script
           dangerouslySetInnerHTML={{
@@ -56,7 +80,6 @@ export default function RootLayout({
       </head>
       <body>
         {children}
-        {/* Cookie banner — loads tracking scripts only after consent */}
         <CookieConsent />
       </body>
     </html>
