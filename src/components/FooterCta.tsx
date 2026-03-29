@@ -225,6 +225,8 @@ export default function FooterCta() {
             { label: "Produse", href: "/produse" },
             { label: "Blog", href: "/blog" },
             { label: "Contact", href: "/contact" },
+            { label: "Confidențialitate", href: "/politica-de-confidentialitate" },
+            { label: "Termeni", href: "/termeni-si-conditii" },
           ].map((l) => (
             <Link key={l.href} href={l.href} style={{
               fontFamily: "var(--font-geist-mono, monospace)",
@@ -240,13 +242,24 @@ export default function FooterCta() {
           ))}
         </nav>
 
-        <span style={{
-          fontFamily: "var(--font-geist-mono, monospace)",
-          fontSize: "10px", letterSpacing: "0.1em",
-          color: "rgba(240,230,211,0.2)",
-        }}>
-          © 2025 Ventira Studio
-        </span>
+        <div style={{ textAlign: "right" }}>
+          <span style={{
+            fontFamily: "var(--font-geist-mono, monospace)",
+            fontSize: "10px", letterSpacing: "0.1em",
+            color: "rgba(240,230,211,0.2)",
+            display: "block", marginBottom: "4px",
+          }}>
+            © 2025 Ventira Studio
+          </span>
+          <span style={{
+            fontFamily: "var(--font-geist-mono, monospace)",
+            fontSize: "9px", letterSpacing: "0.08em",
+            color: "rgba(240,230,211,0.12)",
+            display: "block",
+          }}>
+            Speranta Expert SRL · CUI 48785293
+          </span>
+        </div>
       </div>
 
       <style jsx>{`

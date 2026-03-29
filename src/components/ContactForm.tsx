@@ -196,6 +196,8 @@ export default function ContactForm() {
   const [errors, setErrors] = useState<Partial<FormData>>({});
   const [state, setState] = useState<State>("idle");
   const [serverError, setServerError] = useState("");
+  const [gdprAccepted, setGdprAccepted] = useState(false);
+  const [gdprError, setGdprError] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -223,6 +225,7 @@ export default function ContactForm() {
     if (!form.message.trim() || form.message.trim().length < 20)
       e.message = "Minim 20 de caractere";
     setErrors(e);
+    if (!gdprAccepted) { setGdprError(true); return false; }
     return Object.keys(e).length === 0;
   }
 
@@ -336,6 +339,52 @@ export default function ContactForm() {
           {serverError}
         </p>
       )}
+
+      {/* GDPR Checkbox */}
+      <div className="reveal" style={{ transitionDelay: "0.20s" }}>
+        <label style={{
+          display: "flex", alignItems: "flex-start", gap: "12px",
+          cursor: "pointer", userSelect: "none",
+        }}>
+          <div
+            onClick={() => { setGdprAccepted(!gdprAccepted); setGdprError(false); }}
+            style={{
+              width: "18px", height: "18px", flexShrink: 0,
+              border: `1px solid ${gdprError ? "#e05c5c" : gdprAccepted ? "var(--gold)" : "var(--border)"}`,
+              borderRadius: "2px", marginTop: "1px",
+              background: gdprAccepted ? "var(--gold)" : "transparent",
+              display: "flex", alignItems: "center", justifyContent: "center",
+              transition: "all 0.2s", cursor: "pointer",
+            }}
+          >
+            {gdprAccepted && (
+              <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
+                <path d="M1 4l3 3 5-6" stroke="#080808" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            )}
+          </div>
+          <span style={{
+            fontFamily: "var(--font-geist-mono, monospace)",
+            fontSize: "11px", lineHeight: 1.7,
+            color: gdprError ? "#e05c5c" : "var(--cream-dim)",
+          }}>
+            Am citit și accept{" "}
+            <a href="/politica-de-confidentialitate" target="_blank"
+              style={{ color: "var(--gold)", textDecoration: "none", borderBottom: "1px solid rgba(201,169,110,0.3)" }}>
+              Politica de Confidențialitate
+            </a>
+            {" "}și sunt de acord cu prelucrarea datelor mele în scopul contactării. *
+          </span>
+        </label>
+        {gdprError && (
+          <p style={{
+            fontFamily: "var(--font-geist-mono, monospace)",
+            fontSize: "11px", color: "#e05c5c", marginTop: "6px", marginLeft: "30px",
+          }}>
+            Bifarea acestui câmp este obligatorie.
+          </p>
+        )}
+      </div>
 
       {/* Submit */}
       <div className="reveal" style={{ transitionDelay: "0.24s" }}>
