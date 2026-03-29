@@ -128,37 +128,37 @@ export default function Hero() {
         {/* Outer glow */}
         <div style={{
           position: "absolute",
-          width: "420px", height: "420px",
+          width: "520px", height: "520px",
           borderRadius: "50%",
-          background: "radial-gradient(ellipse, rgba(201,169,110,0.08) 0%, transparent 70%)",
+          background: "radial-gradient(ellipse, rgba(201,169,110,0.1) 0%, transparent 70%)",
           animation: "logoPulse 4s ease-in-out infinite",
         }} />
         {/* Rotating ring */}
         <div style={{
           position: "absolute",
-          width: "340px", height: "340px",
+          width: "430px", height: "430px",
           borderRadius: "50%",
-          border: "1px solid rgba(201,169,110,0.1)",
+          border: "1px solid rgba(201,169,110,0.12)",
           animation: "logoRing 12s linear infinite",
         }} />
         {/* Static inner ring */}
         <div style={{
           position: "absolute",
-          width: "280px", height: "280px",
+          width: "360px", height: "360px",
           borderRadius: "50%",
-          border: "1px solid rgba(201,169,110,0.06)",
+          border: "1px solid rgba(201,169,110,0.07)",
         }} />
 
         {/* Logo */}
         <Image
           src="/ventira-logo-hero.png"
           alt="Ventira Studio"
-          width={260}
-          height={260}
+          width={340}
+          height={340}
           priority
           style={{
             position: "relative", zIndex: 2,
-            filter: "drop-shadow(0 0 48px rgba(201,169,110,0.2))",
+            filter: "drop-shadow(0 0 60px rgba(201,169,110,0.25))",
             animation: "logoFloat 6s ease-in-out infinite",
           }}
         />
