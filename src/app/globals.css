@@ -190,14 +190,18 @@ body::before {
 .posts-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1px;
-  background: var(--border);
+  gap: 0;
+  background: transparent;
   margin-top: 48px;
+  border: 1px solid var(--border);
+  border-bottom: none;
 }
 
 .post-card {
   background: var(--bg);
   padding: 40px 36px;
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
   position: relative;
   overflow: hidden;
   transition: background 0.3s;
