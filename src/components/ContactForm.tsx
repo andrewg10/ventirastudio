@@ -198,7 +198,7 @@ export default function ContactForm() {
   const [serverError, setServerError] = useState("");
   const [gdprAccepted, setGdprAccepted] = useState(false);
   const [gdprError, setGdprError] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
+  const ref = useRef<HTMLFormElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -229,7 +229,7 @@ export default function ContactForm() {
     return Object.keys(e).length === 0;
   }
 
-  async function handleSubmit(e: React.MouseEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!clientValidate()) return;
 
@@ -286,7 +286,7 @@ export default function ContactForm() {
   }
 
   return (
-    <div ref={ref} className="flex flex-col gap-6">
+    <form ref={ref} onSubmit={handleSubmit} noValidate className="flex flex-col gap-6">
       {/* Row 1: Nume + Email */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 reveal">
         <Field label="Nume *" error={errors.name}>
@@ -342,12 +342,20 @@ export default function ContactForm() {
 
       {/* GDPR Checkbox */}
       <div className="reveal" style={{ transitionDelay: "0.20s" }}>
-        <label style={{
-          display: "flex", alignItems: "flex-start", gap: "12px",
-          cursor: "pointer", userSelect: "none",
-        }}>
+        <label
+          onClick={(e) => {
+            // Don't toggle when clicking the privacy policy link
+            if ((e.target as HTMLElement).closest("a")) return;
+            setGdprAccepted(!gdprAccepted); setGdprError(false);
+          }}
+          style={{
+            display: "flex", alignItems: "flex-start", gap: "12px",
+            cursor: "pointer", userSelect: "none",
+          }}
+        >
           <div
-            onClick={() => { setGdprAccepted(!gdprAccepted); setGdprError(false); }}
+            role="checkbox"
+            aria-checked={gdprAccepted}
             style={{
               width: "18px", height: "18px", flexShrink: 0,
               border: `1px solid ${gdprError ? "#e05c5c" : gdprAccepted ? "var(--gold)" : "var(--border)"}`,
@@ -389,7 +397,7 @@ export default function ContactForm() {
       {/* Submit */}
       <div className="reveal" style={{ transitionDelay: "0.24s" }}>
         <button
-          onClick={handleSubmit}
+          type="submit"
           disabled={state === "loading"}
           className="font-mono text-[12px] tracking-[0.2em] uppercase hover:-translate-y-0.5 transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed"
           style={{
@@ -414,6 +422,6 @@ export default function ContactForm() {
         }
         .reveal.visible { opacity: 1; transform: translateY(0); }
       `}</style>
-    </div>
+    </form>
   );
 }

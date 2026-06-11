@@ -42,6 +42,24 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 };
 
+const ORG_JSONLD = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "Ventira Studio",
+  legalName: "Speranța Expert SRL",
+  url: "https://ventirastudio.ro",
+  logo: "https://ventirastudio.ro/ventira-logo-hero.png",
+  email: "contact@ventirastudio.ro",
+  description:
+    "Agenție AI din România — construim agenți AI care automatizează rezervările, contabilitatea și suportul pentru afaceri.",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "București",
+    addressCountry: "RO",
+  },
+  areaServed: "RO",
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
@@ -78,6 +96,10 @@ export default function RootLayout({
         />
       </head>
       <body>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(ORG_JSONLD) }}
+        />
         {children}
         <CookieConsent />
       </body>

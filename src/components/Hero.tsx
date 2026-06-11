@@ -165,7 +165,7 @@ export default function Hero() {
       </div>
 
       {/* Scroll indicator */}
-      <div style={{
+      <div className="hero-scroll" style={{
         position: "absolute", bottom: "48px", left: "96px",
         display: "flex", alignItems: "center", gap: "16px", zIndex: 2,
         animation: "fadeUp 0.8s 1.5s cubic-bezier(0.23,1,0.32,1) both",
@@ -206,11 +206,12 @@ export default function Hero() {
           to   { transform: rotate(360deg); }
         }
         @media (max-width: 900px) {
-          section {
+          #hero {
             grid-template-columns: 1fr !important;
             padding: 120px 32px 60px !important;
             gap: 48px !important;
           }
+          #hero .hero-scroll { left: 32px !important; }
         }
       `}</style>
     </section>

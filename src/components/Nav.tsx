@@ -88,9 +88,10 @@ export default function Nav() {
           style={{
             background: "transparent", border: "none",
             cursor: "pointer", padding: "8px",
-            display: "flex", flexDirection: "column", gap: "5px",
+            flexDirection: "column", gap: "5px",
           }}
           aria-label="Toggle menu"
+          aria-expanded={menuOpen}
         >
           {[0, 1, 2].map((i) => (
             <span key={i} style={{
@@ -114,7 +115,7 @@ export default function Nav() {
             position: "fixed", inset: 0, zIndex: 90,
             background: "rgba(8,8,8,0.97)",
             backdropFilter: "blur(20px)",
-            display: "flex", flexDirection: "column",
+            flexDirection: "column",
             justifyContent: "center", alignItems: "center",
             gap: "40px",
             animation: "fadeIn 0.2s ease",
@@ -143,7 +144,7 @@ export default function Nav() {
       <style>{`
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         .nav-desktop { display: flex; }
-        .nav-mobile  { display: none; }
+        .nav-mobile  { display: none !important; }
         @media (max-width: 768px) {
           nav { padding: 18px 24px !important; }
           .nav-desktop { display: none !important; }

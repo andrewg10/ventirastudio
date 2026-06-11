@@ -249,7 +249,7 @@ export default function FooterCta() {
             color: "rgba(240,230,211,0.2)",
             display: "block", marginBottom: "4px",
           }}>
-            © 2025 Ventira Studio
+            © {new Date().getFullYear()} Ventira Studio
           </span>
           <span style={{
             fontFamily: "var(--font-geist-mono, monospace)",
@@ -257,7 +257,7 @@ export default function FooterCta() {
             color: "rgba(240,230,211,0.12)",
             display: "block",
           }}>
-            Speranta Expert SRL · CUI 48785293
+            Speranța Expert SRL · CUI 48785293
           </span>
         </div>
       </div>

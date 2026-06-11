@@ -45,7 +45,7 @@ export default function Products() {
   return (
     <div id="products" ref={ref}>
       {/* Divider */}
-      <div className="flex items-center gap-6 reveal" style={{ padding: "0 96px", marginBottom: "0" }}>
+      <div className="flex items-center gap-6 reveal prod-pad" style={{ padding: "0 96px", marginBottom: "0" }}>
         <span
           className="font-mono text-[10px] tracking-[0.35em] uppercase text-[var(--gold)] whitespace-nowrap"
           style={{ fontFamily: "var(--font-geist-mono, monospace)" }}
@@ -130,7 +130,7 @@ export default function Products() {
           );
 
           return p.href ? (
-            <Link key={p.name} href={p.href} target={isLive ? "_blank" : undefined} className="flex-1 no-underline">
+            <Link key={p.name} href={p.href} className="flex-1 no-underline">
               {Inner}
             </Link>
           ) : (
@@ -152,8 +152,9 @@ export default function Products() {
           transform: translateY(0);
         }
         @media (max-width: 768px) {
-          div[style*="padding: 0 96px"] { padding: 0 32px !important; }
+          .prod-pad { padding: 0 32px !important; }
           div[class*="flex-col"] > * { border-right: none !important; border-bottom: 1px solid var(--border) !important; }
+          div[class*="flex-col"] > *:last-child { border-bottom: none !important; }
         }
       `}</style>
     </div>

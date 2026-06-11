@@ -9,6 +9,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Blog — Ventira Studio",
   description: "Articole despre automatizare AI, studii de caz reale și ghiduri practice pentru antreprenori din România.",
+  alternates: { canonical: "/blog" },
 };
 
 function getCoverImage(category: string): string {

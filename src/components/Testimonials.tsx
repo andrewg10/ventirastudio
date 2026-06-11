@@ -121,7 +121,7 @@ export default function Testimonials() {
   return (
     <section ref={ref} id="testimoniale" style={{ padding: "120px 0", overflow: "hidden" }}>
       {/* Section divider */}
-      <div className="reveal" style={{
+      <div className="reveal t-pad" style={{
         display: "flex", alignItems: "center", gap: "24px",
         padding: "0 96px", marginBottom: "80px",
       }}>
@@ -136,7 +136,7 @@ export default function Testimonials() {
       </div>
 
       {/* Header */}
-      <div className="reveal" style={{ padding: "0 96px", marginBottom: "64px" }}>
+      <div className="reveal t-pad" style={{ padding: "0 96px", marginBottom: "64px" }}>
         <h2 style={{
           fontFamily: "var(--font-cormorant, serif)",
           fontSize: "clamp(36px, 5vw, 60px)",
@@ -151,6 +151,7 @@ export default function Testimonials() {
       {/* Carousel track */}
       <div
         ref={trackRef}
+        className="t-pad"
         onPointerDown={onPointerDown}
         onPointerMove={onPointerMove}
         onPointerUp={onPointerUp}
@@ -260,7 +261,7 @@ export default function Testimonials() {
       </div>
 
       {/* Controls */}
-      <div className="reveal" style={{
+      <div className="reveal t-controls" style={{
         display: "flex", alignItems: "center", justifyContent: "space-between",
         padding: "48px 96px 0",
       }}>
@@ -318,7 +319,7 @@ export default function Testimonials() {
       </div>
 
       {/* Disclaimer */}
-      <p className="reveal" style={{
+      <p className="reveal t-pad" style={{
         fontFamily: "var(--font-geist-mono, monospace)",
         fontSize: "10px", color: "rgba(240,230,211,0.2)",
         letterSpacing: "0.1em", textAlign: "center",
@@ -328,15 +329,15 @@ export default function Testimonials() {
       </p>
 
       <style>{`
-        .reveal {
+        #testimoniale .reveal {
           opacity: 0; transform: translateY(24px);
           transition: opacity 0.9s cubic-bezier(0.23,1,0.32,1), transform 0.9s cubic-bezier(0.23,1,0.32,1);
         }
-        .reveal.visible { opacity: 1; transform: translateY(0); }
+        #testimoniale .reveal.visible { opacity: 1; transform: translateY(0); }
         @media (max-width: 768px) {
-          section { padding: 80px 0 !important; }
-          div[style*="padding: 0 96px"] { padding: 0 32px !important; }
-          div[style*="padding: 48px 96px"] { padding: 32px 32px 0 !important; }
+          #testimoniale { padding: 80px 0 !important; }
+          #testimoniale .t-pad { padding-left: 32px !important; padding-right: 32px !important; }
+          #testimoniale .t-controls { padding: 32px 32px 0 !important; }
         }
       `}</style>
     </section>

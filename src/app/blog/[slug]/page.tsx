@@ -20,6 +20,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${post.title} — Ventira Studio Blog`,
     description: post.description,
+    alternates: { canonical: `/blog/${slug}` },
   };
 }
 

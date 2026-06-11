@@ -79,7 +79,7 @@ export default function HowItWorks() {
   return (
     <section id="how-it-works">
       {/* Section label */}
-      <div className="flex items-center gap-6" style={{ padding: "0 96px", marginBottom: "0" }}>
+      <div className="flex items-center gap-6 hiw-pad" style={{ padding: "0 96px", marginBottom: "0" }}>
         <span
           className="font-mono text-[10px] tracking-[0.35em] uppercase text-[var(--gold)] whitespace-nowrap"
           style={{ fontFamily: "var(--font-geist-mono, monospace)" }}
@@ -99,6 +99,7 @@ export default function HowItWorks() {
       >
         <div
           ref={stickyRef}
+          className="hiw-sticky"
           style={{
             position: "sticky",
             top: 0,
@@ -172,6 +173,7 @@ export default function HowItWorks() {
             {/* RIGHT — WhatsApp mockup */}
             <div className="flex justify-center md:justify-end">
               <div
+                className="hiw-phone"
                 style={{
                   width: "360px",
                   background: "#111",
@@ -336,8 +338,10 @@ export default function HowItWorks() {
           to   { opacity: 1; transform: scale(1) translateY(0); }
         }
         @media (max-width: 768px) {
-          div[style*="position: sticky"] { padding: 0 32px !important; }
-          div[style*="width: 360px"] { width: 300px !important; }
+          .hiw-pad { padding: 0 32px !important; }
+          .hiw-sticky { padding: 0 32px !important; }
+          .hiw-sticky .grid { gap: 40px !important; }
+          .hiw-phone { width: min(300px, 100%) !important; }
         }
       `}</style>
     </section>

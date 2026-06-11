@@ -1,36 +1,42 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Ventira Studio — ventirastudio.ro
 
-## Getting Started
+Site-ul agenției Ventira Studio (Speranța Expert SRL). Next.js App Router, dark premium design ("Dark Sanctum": `#080808` / `#F0E6D3` / `#C9A96E`, Cormorant Garamond + Geist Mono).
 
-First, run the development server:
+## Stack
+
+- **Next.js 16** (App Router, output standalone) + React 19 + TypeScript
+- **Tailwind CSS v4** + styled-jsx pentru stiluri scoped per componentă
+- **Blog**: MDX din `content/blog/*.mdx` (gray-matter + next-mdx-remote)
+- **Booking**: Cal (cal.eu) în modal iframe — `CalModal.tsx`
+- **Contact**: `/api/contact` → Resend (rate-limited 3 req / 15 min / IP)
+- **Deploy**: Railway, build prin `Dockerfile` (npm ci → next build → standalone runner)
+
+## Rulare locală
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev        # http://localhost:3000
+npm run build      # verificare build de producție
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Variabile de mediu
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| Variabilă | Rol |
+|---|---|
+| `RESEND_API_KEY` | trimiterea emailurilor din formularul de contact (fără ea, send-ul e sărit în dev) |
+| `CONTACT_EMAIL` | destinatar formular (default: contact@ventirastudio.ro) |
+| `NEXT_PUBLIC_CAL_LINK` | link Cal pentru booking (default: andreigemanaru/consultanta) |
+| `NEXT_PUBLIC_GA_ID` | GA4 Measurement ID — fără ea, config-ul GA e sărit |
+| `NEXT_PUBLIC_ADS_ID` | Google Ads ID (default în cod) |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Structură
 
-## Learn More
+- `src/app/` — pagini: home, /produse, /blog, /blog/[slug], /contact, legal, 404, sitemap, robots, api/contact
+- `src/components/` — Hero, Services, HowItWorks, Products, Testimonials, FooterCta, Nav, ContactForm, CalModal, CookieConsent
+- `content/blog/` — articole MDX (frontmatter: title, description, date, category, featured)
+- `public/` — imagini, favicon, og-image (1200×630)
 
-To learn more about Next.js, take a look at the following resources:
+## Convenții
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Stilurile responsive ale componentelor folosesc clase dedicate (`hiw-*`, `pp-*`, `t-*`, `prod-pad`) în blocuri `<style jsx>` — nu selectori pe atributul `style` (React serializează fără spații, nu se potrivesc).
+- Consimțământ cookies: Google Consent Mode v2, default denied pentru EEA; scripturile de tracking se încarcă doar după accept (`CookieConsent.tsx`).

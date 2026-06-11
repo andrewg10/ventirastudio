@@ -1,11 +1,13 @@
 import Nav from "@/components/Nav";
 import ScrollProgress from "@/components/ScrollProgress";
 import ContactForm from "@/components/ContactForm";
+import BookingButton from "@/components/BookingButton";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Contact — Ventira Studio",
   description: "Rezervă un apel gratuit de 30 de minute cu echipa Ventira Studio.",
+  alternates: { canonical: "/contact" },
 };
 
 export default function ContactPage() {
@@ -56,8 +58,11 @@ export default function ContactPage() {
                 <p className="info-text" style={{ marginBottom: "16px" }}>
                   Rezervă un slot de 30 min direct în calendarul nostru.
                 </p>
-                {/* BookingButton rendered client-side via separate component */}
-                <a href="#" id="open-cal-contact" className="demo-link">Alege ora →</a>
+                <BookingButton
+                  label="Alege ora →"
+                  variant="primary"
+                  style={{ padding: "14px 32px", fontSize: "11px" }}
+                />
               </div>
             </div>
           </div>

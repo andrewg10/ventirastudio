@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   title: "Politica de Confidențialitate — Ventira Studio",
   description: "Politica de confidențialitate și protecția datelor personale conform GDPR pentru Ventira Studio.",
   robots: { index: true, follow: true },
+  alternates: { canonical: "/politica-de-confidentialitate" },
 };
 
 const LAST_UPDATED = "29 martie 2025";
@@ -30,7 +31,7 @@ export default function PoliticaConfidentialitate() {
 
             <h2>1. Identitatea operatorului</h2>
             <p>
-              Datele dumneavoastră personale sunt prelucrate de <strong>Speranta Expert SRL</strong>,
+              Datele dumneavoastră personale sunt prelucrate de <strong>Speranța Expert SRL</strong>,
               cu sediul în Str. Pacii 3, Bl. S2, Sc. B, Et. P, Ap. 01, cod poștal 820025, România,
               CUI <strong>48785293</strong>, denumită în continuare „Ventira Studio", „noi" sau „operatorul".
             </p>
@@ -153,7 +154,7 @@ export default function PoliticaConfidentialitate() {
             <ul>
               <li>Email: <a href="mailto:contact@ventirastudio.ro">contact@ventirastudio.ro</a></li>
               <li>Adresă: Str. Pacii 3, Bl. S2, Sc. B, Et. P, Ap. 01, cod 820025, România</li>
-              <li>Operator: Speranta Expert SRL, CUI 48785293</li>
+              <li>Operator: Speranța Expert SRL, CUI 48785293</li>
             </ul>
 
           </div>

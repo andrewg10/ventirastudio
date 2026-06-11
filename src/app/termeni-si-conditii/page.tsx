@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   title: "Termeni și Condiții — Ventira Studio",
   description: "Termenii și condițiile de utilizare a serviciilor Ventira Studio.",
   robots: { index: true, follow: true },
+  alternates: { canonical: "/termeni-si-conditii" },
 };
 
 const LAST_UPDATED = "29 martie 2025";
@@ -30,7 +31,7 @@ export default function TermeniConditii() {
 
             <h2>1. Părțile contractante</h2>
             <p>
-              Prezentele Termeni și Condiții reglementează relația dintre <strong>Speranta Expert SRL</strong>,
+              Prezentele Termeni și Condiții reglementează relația dintre <strong>Speranța Expert SRL</strong>,
               cu sediul în Str. Pacii 3, Bl. S2, Sc. B, Et. P, Ap. 01, cod poștal 820025, România,
               CUI <strong>48785293</strong>, denumită în continuare „Ventira Studio" sau „Prestatorul",
               și orice persoană fizică sau juridică care utilizează site-ul ventirastudio.ro sau serviciile oferite,
@@ -100,7 +101,7 @@ export default function TermeniConditii() {
 
             <h2>8. Proprietate intelectuală</h2>
             <p>
-              Toate elementele site-ului ventirastudio.ro (texte, grafică, cod sursă, logo, denumiri) sunt proprietatea exclusivă a Speranta Expert SRL sau sunt utilizate sub licență și sunt protejate de legislația privind drepturile de autor.
+              Toate elementele site-ului ventirastudio.ro (texte, grafică, cod sursă, logo, denumiri) sunt proprietatea exclusivă a Speranța Expert SRL sau sunt utilizate sub licență și sunt protejate de legislația privind drepturile de autor.
             </p>
             <p>
               Soluțiile custom dezvoltate pentru Client devin proprietatea Clientului după achitarea integrală a prețului convenit, conform prevederilor contractuale specifice fiecărui proiect. Ventira Studio poate utiliza proiectul ca referință în portofoliu, cu acordul prealabil al Clientului.
@@ -161,7 +162,7 @@ export default function TermeniConditii() {
             <ul>
               <li>Email: <a href="mailto:contact@ventirastudio.ro">contact@ventirastudio.ro</a></li>
               <li>Adresă: Str. Pacii 3, Bl. S2, Sc. B, Et. P, Ap. 01, cod 820025, România</li>
-              <li>Operator: Speranta Expert SRL, CUI 48785293</li>
+              <li>Operator: Speranța Expert SRL, CUI 48785293</li>
             </ul>
 
           </div>

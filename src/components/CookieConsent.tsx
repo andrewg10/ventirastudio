@@ -3,8 +3,8 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 
-// Replace with your actual GA4 Measurement ID
-const GA_ID  = process.env.NEXT_PUBLIC_GA_ID  ?? "G-XXXXXXXXXX";
+// GA4 Measurement ID — set NEXT_PUBLIC_GA_ID in env; GA config is skipped when missing
+const GA_ID  = process.env.NEXT_PUBLIC_GA_ID ?? "";
 const ADS_ID = process.env.NEXT_PUBLIC_ADS_ID ?? "AW-17916020292";
 
 type ConsentValue = "granted" | "denied";
@@ -43,7 +43,8 @@ function loadScripts() {
     w.gtag = function () { w.dataLayer.push(arguments); };
     w.gtag("js", new Date());
     w.gtag("config", ADS_ID);
-    w.gtag("config", GA_ID);
+    // Only configure GA4 when a real measurement ID is provided
+    if (GA_ID && GA_ID.startsWith("G-")) w.gtag("config", GA_ID);
   };
 }
 

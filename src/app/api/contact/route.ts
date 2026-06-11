@@ -54,6 +54,16 @@ interface ContactPayload {
   budget: string;
 }
 
+/** Escape user input before interpolating into the HTML email */
+function escapeHtml(value: string): string {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
 function validate(body: Partial<ContactPayload>): string | null {
   if (!body.name?.trim()) return "Numele este obligatoriu.";
   if (!body.email?.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(body.email))
@@ -113,6 +123,14 @@ export async function POST(req: NextRequest) {
     const { Resend } = await import("resend");
     const resend = new Resend(process.env.RESEND_API_KEY);
 
+    const safe = {
+      name: escapeHtml(body.name!),
+      email: escapeHtml(body.email!),
+      service: escapeHtml(body.service!),
+      budget: escapeHtml(body.budget ?? ""),
+      message: escapeHtml(body.message!),
+    };
+
     await resend.emails.send({
       from: "Ventira Studio <noreply@ventirastudio.ro>",
       to: [process.env.CONTACT_EMAIL ?? "contact@ventirastudio.ro"],
@@ -122,11 +140,11 @@ export async function POST(req: NextRequest) {
         <div style="font-family:monospace;max-width:600px;margin:0 auto;padding:32px;background:#080808;color:#F0E6D3;border:1px solid rgba(201,169,110,0.2);border-radius:8px;">
           <h2 style="color:#C9A96E;font-size:20px;margin-bottom:24px;font-weight:400;">Mesaj nou — Ventira Studio</h2>
           <table style="width:100%;border-collapse:collapse;">
-            <tr><td style="padding:8px 0;color:rgba(240,230,211,0.5);width:130px;font-size:11px;text-transform:uppercase;letter-spacing:0.1em;vertical-align:top;">Nume</td><td style="padding:8px 0;color:#F0E6D3;">${body.name}</td></tr>
-            <tr><td style="padding:8px 0;color:rgba(240,230,211,0.5);font-size:11px;text-transform:uppercase;letter-spacing:0.1em;vertical-align:top;">Email</td><td style="padding:8px 0;"><a href="mailto:${body.email}" style="color:#C9A96E;">${body.email}</a></td></tr>
-            <tr><td style="padding:8px 0;color:rgba(240,230,211,0.5);font-size:11px;text-transform:uppercase;letter-spacing:0.1em;vertical-align:top;">Serviciu</td><td style="padding:8px 0;color:#F0E6D3;">${body.service}</td></tr>
-            <tr><td style="padding:8px 0;color:rgba(240,230,211,0.5);font-size:11px;text-transform:uppercase;letter-spacing:0.1em;vertical-align:top;">Buget</td><td style="padding:8px 0;color:#F0E6D3;">${body.budget || "Nespecificat"}</td></tr>
-            <tr><td style="padding:8px 0;color:rgba(240,230,211,0.5);font-size:11px;text-transform:uppercase;letter-spacing:0.1em;vertical-align:top;">Mesaj</td><td style="padding:8px 0;color:#F0E6D3;white-space:pre-wrap;">${body.message}</td></tr>
+            <tr><td style="padding:8px 0;color:rgba(240,230,211,0.5);width:130px;font-size:11px;text-transform:uppercase;letter-spacing:0.1em;vertical-align:top;">Nume</td><td style="padding:8px 0;color:#F0E6D3;">${safe.name}</td></tr>
+            <tr><td style="padding:8px 0;color:rgba(240,230,211,0.5);font-size:11px;text-transform:uppercase;letter-spacing:0.1em;vertical-align:top;">Email</td><td style="padding:8px 0;"><a href="mailto:${safe.email}" style="color:#C9A96E;">${safe.email}</a></td></tr>
+            <tr><td style="padding:8px 0;color:rgba(240,230,211,0.5);font-size:11px;text-transform:uppercase;letter-spacing:0.1em;vertical-align:top;">Serviciu</td><td style="padding:8px 0;color:#F0E6D3;">${safe.service}</td></tr>
+            <tr><td style="padding:8px 0;color:rgba(240,230,211,0.5);font-size:11px;text-transform:uppercase;letter-spacing:0.1em;vertical-align:top;">Buget</td><td style="padding:8px 0;color:#F0E6D3;">${safe.budget || "Nespecificat"}</td></tr>
+            <tr><td style="padding:8px 0;color:rgba(240,230,211,0.5);font-size:11px;text-transform:uppercase;letter-spacing:0.1em;vertical-align:top;">Mesaj</td><td style="padding:8px 0;color:#F0E6D3;white-space:pre-wrap;">${safe.message}</td></tr>
           </table>
         </div>
       `,

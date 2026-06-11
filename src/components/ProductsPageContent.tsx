@@ -118,7 +118,7 @@ export default function ProductsPageContent() {
   return (
     <div ref={ref} style={{ paddingTop: "140px" }}>
       {/* Page header */}
-      <div style={{ padding: "0 96px", marginBottom: "96px" }}>
+      <div className="pp-pad" style={{ padding: "0 96px", marginBottom: "96px" }}>
         <Link
           href="/"
           className="reveal inline-flex items-center gap-3 font-mono text-[11px] tracking-[0.2em] uppercase text-[var(--cream-dim)] hover:text-[var(--cream)] transition-colors duration-300 mb-12"
@@ -157,7 +157,7 @@ export default function ProductsPageContent() {
       </div>
 
       {/* Products list */}
-      <div style={{ padding: "0 96px", marginBottom: "120px" }}>
+      <div className="pp-pad" style={{ padding: "0 96px", marginBottom: "120px" }}>
         <div className="flex flex-col gap-1" style={{ borderTop: "1px solid var(--border)" }}>
           {PRODUCTS.map((product, i) => {
             const statusCfg = STATUS_CONFIG[product.status as keyof typeof STATUS_CONFIG];
@@ -175,7 +175,8 @@ export default function ProductsPageContent() {
                 {/* Product row header */}
                 <button
                   onClick={() => setActiveProduct(isOpen ? null : product.id)}
-                  className="w-full text-left group"
+                  className="w-full text-left group pp-row"
+                  aria-expanded={isOpen}
                   style={{
                     padding: "40px 0",
                     background: "transparent",
@@ -230,7 +231,7 @@ export default function ProductsPageContent() {
                   </div>
 
                   {/* Status */}
-                  <div className="flex items-center gap-2 hidden md:flex">
+                  <div className="items-center gap-2 hidden md:flex">
                     <span
                       className={statusCfg.pulse ? "animate-pulse-dot" : ""}
                       style={{
@@ -267,12 +268,13 @@ export default function ProductsPageContent() {
                 {/* Expanded content */}
                 <div
                   style={{
-                    maxHeight: isOpen ? "600px" : "0",
+                    maxHeight: isOpen ? "900px" : "0",
                     overflow: "hidden",
                     transition: "max-height 0.5s cubic-bezier(0.23,1,0.32,1)",
                   }}
                 >
                   <div
+                    className="pp-expanded"
                     style={{
                       paddingBottom: "48px",
                       paddingLeft: "112px",
@@ -351,12 +353,12 @@ export default function ProductsPageContent() {
           transform: translateY(0);
         }
         @media (max-width: 768px) {
-          div[style*="padding: 0 96px"] { padding: 0 32px !important; }
-          div[style*="paddingLeft: 112px"] {
+          .pp-pad { padding: 0 32px !important; }
+          .pp-expanded {
             padding-left: 0 !important;
             grid-template-columns: 1fr !important;
           }
-          button[style*="gridTemplateColumns"] {
+          .pp-row {
             grid-template-columns: 48px 1fr auto !important;
             gap: 16px !important;
           }

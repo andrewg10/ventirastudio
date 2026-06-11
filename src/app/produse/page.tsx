@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: "Produse — Ventira Studio",
   description:
     "Descoperă produsele AI ale Ventira Studio: AI Receptionist, AI Contabil, AI HR și agenți custom pentru afaceri din România.",
+  alternates: { canonical: "/produse" },
 };
 
 export default function ProduselePage() {
