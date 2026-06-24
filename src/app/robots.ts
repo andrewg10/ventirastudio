@@ -9,7 +9,7 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ["/api/"],
       },
     ],
-    sitemap: "https://ventirastudio.ro/sitemap.xml",
-    host: "https://ventirastudio.ro",
+    sitemap: "https://www.ventirastudio.ro/sitemap.xml",
+    host: "https://www.ventirastudio.ro",
   };
 }

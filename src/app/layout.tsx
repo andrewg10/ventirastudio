@@ -8,11 +8,11 @@ export const metadata: Metadata = {
   description:
     "Construim agenți AI care automatizează rezervările, contabilitatea și suportul pentru afaceri din România.",
   keywords: ["agentie AI Romania", "automatizare AI", "AI receptionist", "Ventira Studio"],
-  metadataBase: new URL("https://ventirastudio.ro"),
+  metadataBase: new URL("https://www.ventirastudio.ro"),
   openGraph: {
     title: "Ventira Studio — Agenție AI din România",
     description: "Agenți AI care lucrează non-stop pentru afacerea ta.",
-    url: "https://ventirastudio.ro",
+    url: "https://www.ventirastudio.ro",
     siteName: "Ventira Studio",
     locale: "ro_RO",
     type: "website",
@@ -47,8 +47,8 @@ const ORG_JSONLD = {
   "@type": "Organization",
   name: "Ventira Studio",
   legalName: "Speranța Expert SRL",
-  url: "https://ventirastudio.ro",
-  logo: "https://ventirastudio.ro/ventira-logo-hero.png",
+  url: "https://www.ventirastudio.ro",
+  logo: "https://www.ventirastudio.ro/ventira-logo-hero.png",
   email: "contact@ventirastudio.ro",
   description:
     "Agenție AI din România — construim agenți AI care automatizează rezervările, contabilitatea și suportul pentru afaceri.",

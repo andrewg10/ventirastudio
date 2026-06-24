@@ -1,5 +1,7 @@
 # CHANGES — Site audit & fixes (2026-06-11)
 
+> **Update (final state):** canonical host is **www.ventirastudio.ro**. The apex now resolves (proxied record in Cloudflare) and 301s to www via the existing "Redirect to WWW" rule, query strings preserved. All code URLs (metadataBase, og:url, JSON-LD, sitemap, robots) flipped to www accordingly — the P0 runbook below is superseded by this setup. Remaining for Andrei: set `NEXT_PUBLIC_GA_ID` in Railway; add Search Console domain property + submit `https://www.ventirastudio.ro/sitemap.xml`.
+
 Full audit of ventirastudio.ro (source + live site). Fixes applied directly to the repo.
 Verification: `tsc --noEmit` passes; eslint introduces no new issues (14 pre-existing style errors remain, non-blocking); live booking modal (cal.eu) confirmed working. Run `npm run build` locally before deploy — the sandbox used for review cannot run Next builds.
 
