@@ -220,8 +220,8 @@ export default function FooterCta() {
 
         <nav style={{ display: "flex", flexWrap: "wrap", gap: "32px" }}>
           {[
-            { label: "Servicii", href: "/#services" },
-            { label: "Cum funcționează", href: "/#how-it-works" },
+            { label: "Servicii", href: "/#servicii" },
+            { label: "Demo", href: "/#demo" },
             { label: "Produse", href: "/produse" },
             { label: "Blog", href: "/blog" },
             { label: "Contact", href: "/contact" },
@@ -246,7 +246,7 @@ export default function FooterCta() {
           <span style={{
             fontFamily: "var(--font-geist-mono, monospace)",
             fontSize: "10px", letterSpacing: "0.1em",
-            color: "rgba(240,230,211,0.2)",
+            color: "rgba(23,19,16,0.45)",
             display: "block", marginBottom: "4px",
           }}>
             © {new Date().getFullYear()} Ventira Studio
@@ -254,7 +254,7 @@ export default function FooterCta() {
           <span style={{
             fontFamily: "var(--font-geist-mono, monospace)",
             fontSize: "9px", letterSpacing: "0.08em",
-            color: "rgba(240,230,211,0.12)",
+            color: "rgba(23,19,16,0.35)",
             display: "block",
           }}>
             Speranța Expert SRL · CUI 48785293

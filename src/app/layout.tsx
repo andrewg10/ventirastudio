@@ -4,14 +4,14 @@ import "./globals.css";
 import CookieConsent from "@/components/CookieConsent";
 
 export const metadata: Metadata = {
-  title: "Ventira Studio — Agenție AI din România",
+  title: "Ventira Studio · Sisteme AI și software care lucrează pentru tine",
   description:
-    "Construim agenți AI care automatizează rezervările, contabilitatea și suportul pentru afaceri din România.",
-  keywords: ["agentie AI Romania", "automatizare AI", "AI receptionist", "Ventira Studio"],
+    "Automatizări AI, site-uri și aplicații construite la comandă pentru afaceri din România. Afacerea ta, pe pilot automat — iar tu comanzi.",
+  keywords: ["automatizare AI Romania", "agenti AI", "site-uri custom", "AI receptionist", "Ventira Studio"],
   metadataBase: new URL("https://www.ventirastudio.ro"),
   openGraph: {
-    title: "Ventira Studio — Agenție AI din România",
-    description: "Agenți AI care lucrează non-stop pentru afacerea ta.",
+    title: "Ventira Studio · Sisteme AI și software care lucrează pentru tine",
+    description: "Afacerea ta, pe pilot automat — iar tu comanzi.",
     url: "https://www.ventirastudio.ro",
     siteName: "Ventira Studio",
     locale: "ro_RO",
@@ -27,8 +27,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Ventira Studio — Agenție AI din România",
-    description: "Agenți AI care lucrează non-stop pentru afacerea ta.",
+    title: "Ventira Studio · Sisteme AI și software care lucrează pentru tine",
+    description: "Afacerea ta, pe pilot automat — iar tu comanzi.",
     images: ["/og-image.png"],
   },
   icons: {
@@ -51,7 +51,7 @@ const ORG_JSONLD = {
   logo: "https://www.ventirastudio.ro/ventira-logo-hero.png",
   email: "contact@ventirastudio.ro",
   description:
-    "Agenție AI din România — construim agenți AI care automatizează rezervările, contabilitatea și suportul pentru afaceri.",
+    "Automatizări AI, site-uri și aplicații construite la comandă pentru afaceri din România.",
   address: {
     "@type": "PostalAddress",
     addressLocality: "București",
@@ -70,7 +70,7 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
-          href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap"
           rel="stylesheet"
         />
         {/*

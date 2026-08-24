@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ventira Studio · Sisteme AI și software care lucrează pentru tine</title>
+<meta name="description" content="Automatizări AI, site-uri și aplicații construite la comandă pentru afaceri din România. Afacerea ta, pe pilot automat — iar tu comanzi.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FAF6EE;
+  --paper-2:#F4EDE0;
+  --ink:#171310;
+  --ink-soft:#4A423A;
+  --ink-mute:#8A7F72;
+  --gold:#C9A96E;
+  --gold-deep:#A8874B;
+  --blush:#EAD9C9;
+  --line:rgba(23,19,16,.12);
+  --serif:'Cormorant Garamond', Georgia, serif;
+  --mono:'Geist Mono', ui-monospace, monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:auto}
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--serif);
+  font-size:20px;
+  line-height:1.5;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+::selection{background:var(--gold);color:var(--paper)}
+
+/* ---------- utilities ---------- */
+.mono{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:500}
+.wrap{max-width:1280px;margin:0 auto;padding:0 6vw}
+.eyebrow{color:var(--gold-deep);display:flex;align-items:center;gap:14px;margin-bottom:28px}
+.eyebrow::before{content:"";width:34px;height:1px;background:var(--gold)}
+.gutter-num{font-family:var(--mono);font-size:11px;color:var(--ink-mute);letter-spacing:.15em}
+section{position:relative}
+
+/* warm gradient washes */
+.wash{position:absolute;border-radius:50%;filter:blur(90px);pointer-events:none;z-index:0}
+.wash.gold{background:radial-gradient(circle, rgba(201,169,110,.28), transparent 65%)}
+.wash.blush{background:radial-gradient(circle, rgba(234,197,170,.30), transparent 65%)}
+
+/* grain */
+body::after{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:99;opacity:.05;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.6'/%3E%3C/svg%3E");
+}
+
+/* ---------- nav ---------- */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:50;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:22px 6vw;
+  transition:background .4s, box-shadow .4s, padding .4s;
+}
+nav.scrolled{background:rgba(250,246,238,.85);backdrop-filter:blur(14px);box-shadow:0 1px 0 var(--line);padding:14px 6vw}
+.logo{display:flex;align-items:baseline;gap:10px;text-decoration:none;color:var(--ink)}
+.logo .v{font-family:var(--serif);font-size:26px;font-weight:600;letter-spacing:.01em}
+.logo .s{font-family:var(--mono);font-size:10px;letter-spacing:.32em;color:var(--gold-deep);transform:translateY(-2px)}
+.nav-links{display:flex;gap:36px}
+.nav-links a{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);text-decoration:none;transition:color .3s}
+.nav-links a:hover{color:var(--gold-deep)}
+.btn-wa{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--paper);background:var(--ink);border:1px solid var(--ink);
+  padding:13px 26px;border-radius:100px;text-decoration:none;
+  position:relative;overflow:hidden;transition:color .35s;
+}
+.btn-wa span{position:relative;z-index:1}
+.btn-wa::before{content:"";position:absolute;inset:0;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .45s cubic-bezier(.65,0,.35,1)}
+.btn-wa:hover::before{transform:scaleX(1)}
+.btn-wa:hover{color:var(--ink)}
+@media(max-width:900px){.nav-links{display:none}}
+
+/* ---------- hero / manifesto ---------- */
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding-top:120px;overflow:hidden}
+.hero .meta-line{display:flex;justify-content:space-between;color:var(--ink-mute);margin-bottom:6vh}
+.hero h1{
+  font-weight:500;font-size:clamp(44px, 7.2vw, 108px);
+  line-height:1.04;letter-spacing:-.01em;max-width:16ch;
+}
+.hero h1 em{font-style:italic;color:var(--gold-deep)}
+.hero h1 .line{display:block;overflow:hidden}
+.hero h1 .line>span{display:inline-block;transform:translateY(110%)}
+.hero-sub{
+  display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:7vh;align-items:end;
+}
+.hero-sub p{font-size:21px;color:var(--ink-soft);max-width:44ch}
+.hero-sub .cta-row{display:flex;gap:18px;justify-content:flex-end;align-items:center}
+.btn-ghost{
+  font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--ink);text-decoration:none;padding:13px 4px;border-bottom:1px solid var(--gold);
+  transition:color .3s;
+}
+.btn-ghost:hover{color:var(--gold-deep)}
+@media(max-width:900px){.hero-sub{grid-template-columns:1fr}.hero-sub .cta-row{justify-content:flex-start}}
+.hero-ticker{
+  margin-top:9vh;border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  overflow:hidden;white-space:nowrap;padding:16px 0;
+}
+.hero-ticker .track{display:inline-block;animation:tick 30s linear infinite}
+@keyframes tick{to{transform:translateX(-50%)}}
+.hero-ticker span{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-mute);margin-right:64px}
+.hero-ticker b{color:var(--gold-deep);font-weight:400;margin-right:64px;font-family:var(--mono);font-size:11px;letter-spacing:.2em}
+
+/* ---------- speed proof ---------- */
+.proof{padding:18vh 0}
+.proof-grid{display:grid;grid-template-columns:5fr 7fr;gap:80px;align-items:start}
+.proof h2, section h2{font-weight:500;font-size:clamp(34px,4.2vw,58px);line-height:1.1;letter-spacing:-.01em}
+.proof h2 em, section h2 em{font-style:italic;color:var(--gold-deep)}
+.proof p.lead{margin-top:24px;color:var(--ink-soft);font-size:20px;max-width:40ch}
+.meters{display:grid;grid-template-columns:1fr 1fr;gap:56px}
+.meter .label{color:var(--ink-mute);margin-bottom:14px}
+.meter .value{font-family:var(--mono);font-size:clamp(44px,4.6vw,68px);font-weight:500;letter-spacing:-.03em}
+.meter .value small{font-size:.4em;color:var(--ink-mute);margin-left:4px}
+.meter .bar{height:2px;background:var(--line);margin:18px 0 12px;position:relative;overflow:hidden}
+.meter .bar i{position:absolute;inset:0;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform 1.4s cubic-bezier(.22,1,.36,1)}
+.meter .verdict{font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:var(--ink-mute)}
+.meter .verdict b{color:var(--gold-deep);font-weight:500}
+.proof-note{grid-column:1/-1;margin-top:10px;font-style:italic;color:var(--ink-mute);font-size:17px}
+@media(max-width:900px){.proof-grid{grid-template-columns:1fr;gap:48px}.meters{gap:36px}}
+
+/* ---------- services ---------- */
+.services{padding:14vh 0;background:linear-gradient(180deg, var(--paper) 0%, var(--paper-2) 50%, var(--paper) 100%)}
+.svc-head{display:grid;grid-template-columns:auto 1fr;gap:40px;align-items:end;margin-bottom:9vh}
+.svc-head .right{justify-self:end;max-width:36ch;color:var(--ink-soft);font-size:19px;text-align:right}
+.svc{
+  display:grid;grid-template-columns:80px 5fr 4fr 200px;gap:40px;align-items:baseline;
+  padding:52px 0;border-top:1px solid var(--line);cursor:pointer;position:relative;
+  transition:padding .4s;
+}
+.svc:last-of-type{border-bottom:1px solid var(--line)}
+.svc h3{font-weight:500;font-size:clamp(26px,2.8vw,40px);letter-spacing:-.01em;transition:color .3s, transform .4s}
+.svc:hover h3{color:var(--gold-deep);transform:translateX(12px)}
+.svc .desc{color:var(--ink-soft);font-size:18px;max-width:42ch}
+.svc .price{justify-self:end;text-align:right}
+.svc .price .mono{color:var(--ink-mute);display:block;margin-bottom:6px;letter-spacing:.14em}
+.svc .price .amount{font-family:var(--mono);font-size:20px;color:var(--ink);font-weight:500}
+.svc .tags{grid-column:2/4;display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.svc .tag{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-mute);border:1px solid var(--line);border-radius:100px;padding:7px 14px}
+@media(max-width:900px){.svc{grid-template-columns:1fr;gap:14px}.svc .price{justify-self:start;text-align:left}.svc .tags{grid-column:auto}.svc-head{grid-template-columns:1fr}.svc-head .right{justify-self:start;text-align:left}}
+
+/* ---------- comparison ---------- */
+.compare{padding:16vh 0}
+.compare-head{max-width:64ch;margin-bottom:8vh}
+.cmp-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.cmp-card{
+  border:1px solid var(--line);border-radius:6px;padding:36px 40px;background:rgba(255,255,255,.4);
+  transition:transform .5s cubic-bezier(.22,1,.36,1), box-shadow .5s;
+}
+.cmp-card:hover{transform:translateY(-6px);box-shadow:0 24px 60px -30px rgba(23,19,16,.25)}
+.cmp-row{display:flex;gap:16px;align-items:baseline;padding:10px 0}
+.cmp-row .sign{font-family:var(--mono);font-size:12px;width:60px;flex-shrink:0;letter-spacing:.1em}
+.cmp-row.bad .sign{color:#B5583B}
+.cmp-row.good .sign{color:var(--gold-deep)}
+.cmp-row.bad p{color:var(--ink-mute);font-size:17px;text-decoration:line-through;text-decoration-color:rgba(181,88,59,.4);text-decoration-thickness:1px}
+.cmp-row.good p{color:var(--ink);font-size:19px}
+.cmp-row+.cmp-row{border-top:1px dashed var(--line)}
+@media(max-width:900px){.cmp-grid{grid-template-columns:1fr}}
+
+/* ---------- demo ---------- */
+.demo{padding:14vh 0;background:var(--ink);color:var(--paper);border-radius:0}
+.demo .eyebrow{color:var(--gold)}
+.demo h2{color:var(--paper)}
+.demo h2 em{color:var(--gold)}
+.demo-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;margin-top:8vh}
+.demo-copy p{color:rgba(250,246,238,.72);font-size:20px;max-width:42ch;margin-bottom:28px}
+.chat{
+  background:#201B16;border:1px solid rgba(250,246,238,.12);border-radius:14px;
+  padding:28px;max-width:460px;justify-self:end;width:100%;
+  box-shadow:0 40px 100px -40px rgba(0,0,0,.6);
+}
+.chat-head{display:flex;align-items:center;gap:12px;padding-bottom:18px;border-bottom:1px solid rgba(250,246,238,.1);margin-bottom:18px}
+.chat-head .dot{width:9px;height:9px;border-radius:50%;background:#7BAE7F}
+.chat-head span{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(250,246,238,.6)}
+.msg{max-width:85%;padding:12px 16px;border-radius:12px;font-family:var(--mono);font-size:12.5px;line-height:1.6;margin-bottom:12px;opacity:0;transform:translateY(10px)}
+.msg.in{background:rgba(250,246,238,.08);color:rgba(250,246,238,.9);border-bottom-left-radius:3px}
+.msg.out{background:var(--gold);color:var(--ink);margin-left:auto;border-bottom-right-radius:3px}
+.msg.show{animation:msg-in .5s cubic-bezier(.22,1,.36,1) forwards}
+@keyframes msg-in{to{opacity:1;transform:none}}
+.chat-input{display:flex;gap:10px;margin-top:8px}
+.chat-input input{
+  flex:1;background:rgba(250,246,238,.06);border:1px solid rgba(250,246,238,.14);border-radius:100px;
+  padding:12px 18px;color:var(--paper);font-family:var(--mono);font-size:12px;outline:none;
+}
+.chat-input input::placeholder{color:rgba(250,246,238,.35)}
+.chat-input button{
+  background:var(--gold);color:var(--ink);border:0;border-radius:100px;padding:12px 20px;
+  font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;
+}
+@media(max-width:900px){.demo-grid{grid-template-columns:1fr;gap:48px}.chat{justify-self:start}}
+
+/* ---------- work ---------- */
+.work{padding:16vh 0}
+.work-head{display:flex;justify-content:space-between;align-items:end;margin-bottom:8vh;gap:40px}
+.case{
+  display:grid;grid-template-columns:80px 4fr 5fr 160px;gap:40px;align-items:baseline;
+  padding:44px 0;border-top:1px solid var(--line);text-decoration:none;color:inherit;
+}
+.case:last-of-type{border-bottom:1px solid var(--line)}
+.case h3{font-weight:500;font-size:clamp(24px,2.6vw,36px);transition:color .3s,transform .4s}
+.case:hover h3{color:var(--gold-deep);transform:translateX(12px)}
+.case .what{color:var(--ink-soft);font-size:17.5px;max-width:46ch}
+.case .type{justify-self:end;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-mute)}
+@media(max-width:900px){.case{grid-template-columns:1fr;gap:10px}.case .type{justify-self:start}}
+
+/* ---------- process ---------- */
+.process{padding:14vh 0;background:var(--paper-2)}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:40px;margin-top:8vh}
+.step .num{font-family:var(--mono);font-size:12px;color:var(--gold-deep);letter-spacing:.15em;display:block;margin-bottom:20px}
+.step h4{font-weight:500;font-size:24px;margin-bottom:12px}
+.step p{color:var(--ink-soft);font-size:16.5px}
+@media(max-width:900px){.steps{grid-template-columns:1fr 1fr;gap:32px}}
+@media(max-width:560px){.steps{grid-template-columns:1fr}}
+
+/* ---------- contact ---------- */
+.contact{padding:20vh 0 14vh;text-align:left;overflow:hidden}
+.contact h2{font-size:clamp(44px,6.4vw,96px);max-width:14ch}
+.contact .sub{margin-top:32px;display:flex;justify-content:space-between;align-items:end;gap:40px;flex-wrap:wrap}
+.contact .sub p{color:var(--ink-soft);font-size:20px;max-width:38ch}
+.big-wa{
+  display:inline-flex;align-items:center;gap:16px;margin-top:20px;
+  font-family:var(--mono);font-size:13px;letter-spacing:.14em;text-transform:uppercase;
+  background:var(--ink);color:var(--paper);text-decoration:none;
+  padding:24px 44px;border-radius:100px;position:relative;overflow:hidden;transition:color .35s;
+}
+.big-wa span{position:relative;z-index:1}
+.big-wa::before{content:"";position:absolute;inset:0;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .5s cubic-bezier(.65,0,.35,1)}
+.big-wa:hover::before{transform:scaleX(1)}
+.big-wa:hover{color:var(--ink)}
+footer{border-top:1px solid var(--line);padding:36px 6vw;display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px}
+footer .mono{color:var(--ink-mute);letter-spacing:.12em}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(36px)}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <a class="logo" href="#top">
+    <span class="v">Ventira</span><span class="s">STUDIO</span>
+  </a>
+  <div class="nav-links">
+    <a href="#servicii">Servicii</a>
+    <a href="#demo">Demo</a>
+    <a href="#proiecte">Proiecte</a>
+    <a href="#proces">Proces</a>
+  </div>
+  <a class="btn-wa" href="https://wa.me/40769292363?text=Salut%2C%20vreau%20s%C4%83%20automatiz%C4%83m%20ceva%20%C3%AEn%20firma%20mea." target="_blank"><span>Scrie-mi pe WhatsApp</span></a>
+</nav>
+
+<!-- HERO -->
+<header class="hero wrap" id="top">
+  <div class="wash gold" style="width:640px;height:640px;top:-10%;right:-12%"></div>
+  <div class="wash blush" style="width:520px;height:520px;bottom:8%;left:-14%"></div>
+  <div class="meta-line mono">
+    <span>Ventira Studio · București</span>
+    <span>Software & AI · Made to order</span>
+  </div>
+  <h1>
+    <span class="line"><span>Afacerea ta,</span></span>
+    <span class="line"><span>pe <em>pilot automat</em>,</span></span>
+    <span class="line"><span>iar tu comanzi.</span></span>
+  </h1>
+  <div class="hero-sub">
+    <p class="rv">Automatizări AI, site-uri și aplicații scrise de la zero pentru afaceri din România. Fără șabloane, fără promisiuni umflate — sisteme care lucrează în locul tău, măsurabil.</p>
+    <div class="cta-row rv">
+      <a class="btn-ghost" href="#demo">Încearcă un demo viu ↓</a>
+      <a class="btn-wa" href="https://wa.me/40769292363?text=Salut%2C%20vreau%20s%C4%83%20automatiz%C4%83m%20ceva%20%C3%AEn%20firma%20mea." target="_blank"><span>Hai să vorbim</span></a>
+    </div>
+  </div>
+  <div class="hero-ticker">
+    <div class="track" id="ticker">
+      <span>Automatizări AI</span><b>·</b><span>Agenți WhatsApp</span><b>·</b><span>Site-uri custom</span><b>·</b><span>Aplicații web</span><b>·</b><span>Integrări & plăți</span><b>·</b><span>Mentenanță</span><b>·</b>
+      <span>Automatizări AI</span><b>·</b><span>Agenți WhatsApp</span><b>·</b><span>Site-uri custom</span><b>·</b><span>Aplicații web</span><b>·</b><span>Integrări & plăți</span><b>·</b><span>Mentenanță</span><b>·</b>
+    </div>
+  </div>
+</header>
+
+<!-- SPEED PROOF -->
+<section class="proof wrap" id="proba">
+  <div class="proof-grid">
+    <div>
+      <div class="eyebrow mono rv">Proba, nu promisiunea</div>
+      <h2 class="rv">Nu-ți cer să mă crezi. <em>Browserul tău</em> tocmai a măsurat.</h2>
+      <p class="lead rv">Pagina asta e construită exact ca proiectele pe care le livrez. Cifrele de mai jos nu sunt ale mele — sunt măsurate acum, pe conexiunea ta, de dispozitivul tău.</p>
+    </div>
+    <div class="meters rv">
+      <div class="meter">
+        <div class="label mono">Primul conținut vizibil</div>
+        <div class="value"><span id="fcp">—</span><small>s</small></div>
+        <div class="bar"><i id="fcp-bar"></i></div>
+        <div class="verdict" id="fcp-verdict">se măsoară…</div>
+      </div>
+      <div class="meter">
+        <div class="label mono">Pagina complet încărcată</div>
+        <div class="value"><span id="load">—</span><small>s</small></div>
+        <div class="bar"><i id="load-bar"></i></div>
+        <div class="verdict" id="load-verdict">se măsoară…</div>
+      </div>
+      <div class="proof-note">Reperul Google pentru „rapid" este 1,8s. Cine vinde viteză trebuie să o și livreze — inclusiv pe propria pagină.</div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="servicii">
+  <div class="wrap">
+    <div class="svc-head">
+      <div>
+        <div class="eyebrow mono rv">Servicii</div>
+        <h2 class="rv">Trei feluri în care <em>îți cumpăr timp.</em></h2>
+      </div>
+      <p class="right rv">Preț fix, stabilit înainte să încep. Fiecare proiect include un plan de mentenanță — un sistem viu are nevoie de cineva care îl ține viu. Prima discuție e gratuită.</p>
+    </div>
+
+    <div class="svc rv">
+      <span class="gutter-num">01</span>
+      <div>
+        <h3>Automatizări & agenți AI</h3>
+        <div class="tags">
+          <span class="tag">Agent WhatsApp</span><span class="tag">Programări</span><span class="tag">Facturare</span><span class="tag">Rapoarte</span>
+        </div>
+      </div>
+      <p class="desc">Un angajat care nu doarme: răspunde clienților, face programări, emite facturi și rapoarte. Tu doar verifici dimineața ce s-a întâmplat peste noapte.</p>
+      <div class="price"><span class="mono">de la</span><span class="amount">2.500 lei</span><span class="mono" style="display:block;margin-top:6px">+ mentenanță</span></div>
+    </div>
+
+    <div class="svc rv">
+      <span class="gutter-num">02</span>
+      <div>
+        <h3>Site-uri & aplicații custom</h3>
+        <div class="tags">
+          <span class="tag">Cod de la zero</span><span class="tag">Magazin online</span><span class="tag">Plăți & integrări</span><span class="tag">SEO inclus</span>
+        </div>
+      </div>
+      <p class="desc">De la site de prezentare la platformă completă. Fără WordPress, fără teme cumpărate — fiecare pagină e scrisă pentru afacerea ta și pentru Google. Construcția e accesibilă pentru că nu te vând și te las: rămân responsabil de sistem.</p>
+      <div class="price"><span class="mono">de la</span><span class="amount">1.200 lei</span><span class="mono" style="display:block;margin-top:6px">+ mentenanță</span></div>
+    </div>
+
+    <div class="svc rv">
+      <span class="gutter-num">03</span>
+      <div>
+        <h3>Mentenanță & continuitate</h3>
+        <div class="tags">
+          <span class="tag">Esențial — găzduire, SSL, backup, monitorizare</span><span class="tag">Complet — totul din Esențial + modificări lunare, prioritate</span>
+        </div>
+      </div>
+      <p class="desc">Inclusă în fiecare proiect — un sistem fără îngrijire se degradează până se oprește. <b>Esențial</b> ține totul în funcțiune; <b>Complet</b> îl și evoluează lună de lună. Tu ai un singur număr de sunat.</p>
+      <div class="price"><span class="mono">Esențial</span><span class="amount">299 lei/lună</span><span class="mono" style="display:block;margin-top:12px">Complet</span><span class="amount">399 lei/lună</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARISON -->
+<section class="compare wrap">
+  <div class="compare-head">
+    <div class="eyebrow mono rv">Manual vs. automatizat</div>
+    <h2 class="rv">Fiecare oră făcută de mână <em>are un preț.</em> Doar că nu apare pe nicio factură.</h2>
+  </div>
+  <div class="cmp-grid">
+    <div class="cmp-card rv">
+      <div class="cmp-row bad"><span class="sign">MANUAL</span><p>Răspunzi la aceleași întrebări de 30 de ori pe zi</p></div>
+      <div class="cmp-row good"><span class="sign">VENTIRA</span><p>Agentul răspunde instant, tu intervii doar la excepții</p></div>
+      <div class="cmp-row bad"><span class="sign">MANUAL</span><p>Programări notate în agendă, uitate, suprapuse</p></div>
+      <div class="cmp-row good"><span class="sign">VENTIRA</span><p>Calendar sincronizat, confirmări și reamintiri automate</p></div>
+    </div>
+    <div class="cmp-card rv">
+      <div class="cmp-row bad"><span class="sign">MANUAL</span><p>Facturi emise seara, după program, cu greșeli</p></div>
+      <div class="cmp-row good"><span class="sign">VENTIRA</span><p>Facturare automată la fiecare comandă, zero erori</p></div>
+      <div class="cmp-row bad"><span class="sign">MANUAL</span><p>Afli cum merge firma abia la finalul lunii</p></div>
+      <div class="cmp-row good"><span class="sign">VENTIRA</span><p>Raport zilnic pe WhatsApp, cifrele în buzunar</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- DEMO -->
+<section class="demo" id="demo">
+  <div class="wrap">
+    <div class="eyebrow mono rv">Atinge, nu doar citi</div>
+    <h2 class="rv">Un agent <em>viu</em>, chiar aici.</h2>
+    <div class="demo-grid">
+      <div class="demo-copy rv">
+        <p>Acesta e genul de agent pe care îl instalez pe WhatsApp-ul afacerii tale. Scrie-i ceva — o programare, o întrebare de preț — și privește cum răspunde.</p>
+        <p>Ce vezi aici e o demonstrație. Al tău va ști serviciile tale, programul tău, prețurile tale.</p>
+        <a class="btn-ghost" style="border-color:var(--gold);color:var(--gold)" href="https://wa.me/40769292363?text=Vreau%20un%20agent%20ca%20%C4%83sta%20pentru%20firma%20mea." target="_blank">Vreau unul pentru firma mea →</a>
+      </div>
+      <div class="chat rv" id="chat">
+        <div class="chat-head"><span class="dot"></span><span>Agent Ventira · online</span></div>
+        <div id="chat-log">
+          <div class="msg in show">Bună! Sunt agentul de programări. Cu ce te pot ajuta azi?</div>
+        </div>
+        <div class="chat-input">
+          <input id="chat-in" type="text" placeholder="ex: vreau o programare mâine la 14:00" autocomplete="off">
+          <button id="chat-send">Trimite</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WORK -->
+<section class="work wrap" id="proiecte">
+  <div class="work-head">
+    <div>
+      <div class="eyebrow mono rv">Proiecte</div>
+      <h2 class="rv">Construite <em>de la zero.</em></h2>
+    </div>
+    <p class="rv" style="color:var(--ink-soft);max-width:34ch;font-size:18px">Produse proprii și proiecte de client — fiecare pornit dintr-o problemă reală, nu dintr-un template.</p>
+  </div>
+
+  <a class="case rv" href="#">
+    <span class="gutter-num">01</span>
+    <h3>Ventira Agents</h3>
+    <p class="what">Agenți AI de rezervări pe WhatsApp pentru saloane, clinici și service-uri. Programări, confirmări și reamintiri, fără recepție.</p>
+    <span class="type">Produs SaaS</span>
+  </a>
+  <a class="case rv" href="#">
+    <span class="gutter-num">02</span>
+    <h3>FișaRol.ro</h3>
+    <p class="what">Generare de fișe de post conforme, în minute în loc de ore. Folosit de firme și contabili din România.</p>
+    <span class="type">Produs SaaS</span>
+  </a>
+  <a class="case rv" href="#">
+    <span class="gutter-num">03</span>
+    <h3>Speranța Contab</h3>
+    <p class="what">Portal pentru cabinet de expertiză contabilă: documente, termene și comunicare cu clienții, într-un singur loc.</p>
+    <span class="type">Client</span>
+  </a>
+</section>
+
+<!-- PROCESS -->
+<section class="process" id="proces">
+  <div class="wrap">
+    <div class="eyebrow mono rv">Procesul</div>
+    <h2 class="rv">De la problemă la sistem, <em>pe un singur fir.</em></h2>
+    <div class="steps">
+      <div class="step rv"><span class="num">01 / Descoperire</span><h4>Înțeleg problema</h4><p>O discuție de 30 de minute. Nu vând nimic — aflu ce te costă timp și bani.</p></div>
+      <div class="step rv"><span class="num">02 / Preț fix</span><h4>Negru pe alb</h4><p>Primești un preț fix și un termen clar, înainte să scriu o linie de cod.</p></div>
+      <div class="step rv"><span class="num">03 / Construcție</span><h4>Vezi progresul</h4><p>Lucrez în iterații scurte. Vezi sistemul crescând, nu aștepți o „mare dezvăluire".</p></div>
+      <div class="step rv"><span class="num">04 / Continuitate</span><h4>Al tău, dar nu singur</h4><p>Cod, acces, documentație — totul e al tău. Iar eu rămân responsabil: mentenanța face parte din fiecare proiect, ca sistemul să meargă și mâine.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact wrap" id="contact">
+  <div class="wash gold" style="width:560px;height:560px;top:0;right:-10%"></div>
+  <div class="eyebrow mono rv">Primul pas</div>
+  <h2 class="rv">Spune-mi ce te <em>mănâncă</em> de timp.</h2>
+  <div class="sub">
+    <p class="rv">O singură conversație. Îți spun sincer dacă merită automatizat — și cât ar costa. Dacă nu merită, îți spun și asta.</p>
+    <a class="big-wa rv" href="https://wa.me/40769292363?text=Salut%2C%20am%20o%20problem%C4%83%20care%20%C3%AEmi%20m%C4%83n%C3%A2nc%C4%83%20timp%3A%20" target="_blank"><span>Scrie-mi pe WhatsApp →</span></a>
+  </div>
+</section>
+
+<footer>
+  <span class="mono">© 2026 Ventira Studio · Speranța Expert SRL</span>
+  <span class="mono">București, România · contact@ventirastudio.ro</span>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+// ---------- nav ----------
+const nav=document.getElementById('nav');
+addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>40),{passive:true});
+
+// ---------- hero lines ----------
+gsap.registerPlugin(ScrollTrigger);
+gsap.to('.hero h1 .line>span',{y:0,duration:1.2,stagger:.14,ease:'power4.out',delay:.15});
+
+// ---------- reveals ----------
+document.querySelectorAll('.rv').forEach(el=>{
+  gsap.to(el,{opacity:1,y:0,duration:1.1,ease:'power3.out',
+    scrollTrigger:{trigger:el,start:'top 88%'}});
+});
+
+// ---------- gentle parallax on washes ----------
+document.querySelectorAll('.wash').forEach(w=>{
+  gsap.to(w,{yPercent:-18,ease:'none',scrollTrigger:{trigger:w.parentElement,scrub:1.2}});
+});
+
+// ---------- speed proof ----------
+function fmt(s){return s.toFixed(2).replace('.',',');}
+function setMeter(idVal,idBar,idVer,seconds,limit,label){
+  const v=document.getElementById(idVal), bar=document.getElementById(idBar), ver=document.getElementById(idVer);
+  // count-up
+  const obj={n:0};
+  gsap.to(obj,{n:seconds,duration:1.4,ease:'power2.out',onUpdate:()=>v.textContent=fmt(obj.n),
+    scrollTrigger:{trigger:v,start:'top 85%'},
+    onStart:()=>{bar.style.transform='scaleX('+Math.min(seconds/ (limit*2),1)+')';}});
+  const pct=Math.round((seconds/limit)*100);
+  ver.innerHTML = seconds<=limit
+    ? '<b>'+pct+'% din '+label+'</b> — trece testul'
+    : 'cu <b>'+(pct-100)+'% peste</b> '+label;
+}
+addEventListener('load',()=>{
+  setTimeout(()=>{
+    let fcp=0.6, load=1.2;
+    try{
+      const p=performance.getEntriesByType('paint').find(e=>e.name==='first-contentful-paint');
+      if(p)fcp=p.startTime/1000;
+      const navE=performance.getEntriesByType('navigation')[0];
+      if(navE&&navE.loadEventEnd)load=navE.loadEventEnd/1000;
+    }catch(e){}
+    setMeter('fcp','fcp-bar','fcp-verdict',fcp,1.8,'limita Google (1,8s)');
+    setMeter('load','load-bar','load-verdict',load,2.5,'reperul „rapid" (2,5s)');
+  },300);
+});
+
+// ---------- demo chat ----------
+const log=document.getElementById('chat-log'), inp=document.getElementById('chat-in');
+function addMsg(text,cls){
+  const d=document.createElement('div');d.className='msg '+cls;d.textContent=text;log.appendChild(d);
+  requestAnimationFrame(()=>d.classList.add('show'));
+  log.parentElement.scrollTop=log.parentElement.scrollHeight;
+}
+function reply(t){
+  const s=t.toLowerCase();
+  if(/programa|rezerv|maine|mâine|ora|azi|\d{1,2}[:.]\d{2}/.test(s))
+    return 'Perfect. Am găsit liber mâine la 14:00 și la 16:30. Pe ce nume fac programarea?';
+  if(/pret|preț|cost|cat|cât/.test(s))
+    return 'Prețurile pornesc de la 150 lei, în funcție de serviciu. Vrei să-ți trimit lista completă sau te programez direct?';
+  if(/anul(e|a)|sterge|șterge|renunt/.test(s))
+    return 'Nicio problemă — am anulat. Vrei să reprogramăm pentru altă zi?';
+  if(/salut|buna|bună|hey|hello/.test(s))
+    return 'Salut! Pot să te programez, să-ți spun prețurile sau programul. Ce te interesează?';
+  return 'Am notat. Un coleg uman îți răspunde imediat pentru detalii — între timp, vrei să-ți rezerv un loc?';
+}
+function send(){
+  const t=inp.value.trim(); if(!t)return;
+  addMsg(t,'out'); inp.value='';
+  setTimeout(()=>addMsg(reply(t),'in'), 700+Math.random()*500);
+}
+document.getElementById('chat-send').onclick=send;
+inp.addEventListener('keydown',e=>{if(e.key==='Enter')send();});
+</script>
+</body>
+</html>
