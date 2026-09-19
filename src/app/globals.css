@@ -256,9 +256,9 @@ section { position: relative; }
   display: grid; grid-template-columns: 80px 4fr 5fr 160px; gap: 40px; align-items: baseline;
   padding: 44px 0; border-top: 1px solid var(--hairline); text-decoration: none; color: inherit;
 }
-.case:last-of-type { border-bottom: 1px solid var(--hairline); }
+.case:last-child { border-bottom: 1px solid var(--hairline); }
 .case h3 { font-weight: 500; font-size: clamp(24px, 2.6vw, 36px); transition: color .3s, transform .4s; }
-.case:hover h3 { color: var(--gold); transform: translateX(12px); }
+a.case:hover h3 { color: var(--gold); transform: translateX(12px); }
 .case .what { color: var(--ink-soft); font-size: 17.5px; max-width: 46ch; }
 .case .type { justify-self: end; font-family: var(--font-geist-mono, monospace); font-size: 10.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
 @media (max-width: 900px) { .case { grid-template-columns: 1fr; gap: 10px; } .case .type { justify-self: start; } }
