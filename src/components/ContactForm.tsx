@@ -11,10 +11,10 @@ const SERVICES = [
 ];
 
 const BUDGETS = [
-  "Sub 500 EUR",
-  "500 – 2.000 EUR",
-  "2.000 – 5.000 EUR",
-  "Peste 5.000 EUR",
+  "Sub 1.500 lei",
+  "1.500 – 4.000 lei",
+  "4.000 – 10.000 lei",
+  "Peste 10.000 lei",
   "Prefer să discutăm",
 ];
 

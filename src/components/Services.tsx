@@ -34,7 +34,7 @@ export default function Services() {
           </p>
           <div className="price">
             <span className="mono">de la</span>
-            <span className="amount">2.500 lei</span>
+            <span className="amount">4.000 lei</span>
             <span className="mono" style={{ display: "block", marginTop: "6px" }}>+ mentenanță</span>
           </div>
         </div>
@@ -58,7 +58,7 @@ export default function Services() {
           </p>
           <div className="price">
             <span className="mono">de la</span>
-            <span className="amount">1.200 lei</span>
+            <span className="amount">1.500 lei</span>
             <span className="mono" style={{ display: "block", marginTop: "6px" }}>+ mentenanță</span>
           </div>
         </div>
@@ -80,9 +80,9 @@ export default function Services() {
           </p>
           <div className="price">
             <span className="mono">Esențial</span>
-            <span className="amount">299 lei/lună</span>
-            <span className="mono" style={{ display: "block", marginTop: "12px" }}>Complet</span>
             <span className="amount">399 lei/lună</span>
+            <span className="mono" style={{ display: "block", marginTop: "12px" }}>Complet</span>
+            <span className="amount">499 lei/lună</span>
           </div>
         </div>
       </div>
