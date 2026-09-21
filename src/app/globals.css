@@ -260,6 +260,13 @@ section { position: relative; }
 .case h3 { font-weight: 500; font-size: clamp(24px, 2.6vw, 36px); transition: color .3s, transform .4s; }
 a.case:hover h3 { color: var(--gold); transform: translateX(12px); }
 .case .what { color: var(--ink-soft); font-size: 17.5px; max-width: 46ch; }
+.case .try {
+  display: inline-block; margin-top: 14px;
+  font-family: var(--font-geist-mono, monospace); font-size: 10.5px; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--gold); text-decoration: none; border-bottom: 1px solid rgba(201,169,110,.35);
+  transition: border-color .3s;
+}
+.case .try:hover { border-color: var(--gold); }
 .case .type { justify-self: end; font-family: var(--font-geist-mono, monospace); font-size: 10.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
 @media (max-width: 900px) { .case { grid-template-columns: 1fr; gap: 10px; } .case .type { justify-self: start; } }
 

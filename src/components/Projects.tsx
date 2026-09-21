@@ -3,7 +3,16 @@ interface Case {
   name: string;
   what: string;
   type: string;
+  /** External site — whole row becomes a link */
   href?: string;
+  /** WhatsApp number (international, no +) — adds a "test the agent" link */
+  wa?: string;
+}
+
+const WA_TEST_MESSAGE = "Bună! Am văzut agentul pe ventirastudio.ro și vreau să-l testez.";
+
+function waLink(number: string) {
+  return `https://wa.me/${number}?text=${encodeURIComponent(WA_TEST_MESSAGE)}`;
 }
 
 const CASES: Case[] = [
@@ -30,24 +39,27 @@ const CASES: Case[] = [
     href: "https://cassaluks.ro",
   },
 
-  // ── Agenți AI livrați ──
+  // ── Agenți AI în producție ──
   {
     number: "04",
     name: "ConexTrans Dispecerat",
     what: "Agent AI pentru autogară: răspunde la întrebări despre orar și trasee pentru toți operatorii și preia rezervările curselor proprii.",
-    type: "Agent AI",
+    type: "Agent AI · Live",
+    wa: "40745384267",
   },
   {
     number: "05",
     name: "Agent La Liman",
     what: "Agent AI pe WhatsApp pentru restaurant: preia rezervări de mese și răspunde la întrebări despre meniu, program și evenimente private.",
-    type: "Agent AI",
+    type: "Agent AI · Live",
+    wa: "40745374765",
   },
   {
     number: "06",
     name: "Le Pelican Sportif",
     what: "Agent AI de rezervări pentru local: programări, confirmări și reamintiri, direct în conversație.",
-    type: "Agent AI",
+    type: "Agent AI · Live",
+    wa: "40754202153",
   },
 
   // ── Produse proprii ──
@@ -56,20 +68,46 @@ const CASES: Case[] = [
     name: "Ventira Agents",
     what: "Agenți AI de rezervări pe WhatsApp pentru saloane, clinici și service-uri. Programări, confirmări și reamintiri, fără recepție.",
     type: "Produs SaaS",
+    wa: "40769292363",
   },
   {
     number: "08",
-    name: "FișaRol.ro",
-    what: "Generare de fișe de post conforme, în minute în loc de ore. Folosit de firme și contabili din România.",
-    type: "Produs SaaS",
+    name: "RadarFiscal",
+    what: "Citește fișa pe plătitor din SPV și spune cât ai de plată, în ce cont IBAN se plătește și scoate ordinele de plată gata completate. Pentru contabili și antreprenori.",
+    type: "Produs SaaS · Live ↗",
+    href: "https://radarfiscal.ro",
   },
   {
     number: "09",
-    name: "Speranța Contab",
-    what: "Portal pentru cabinet de expertiză contabilă: documente, termene și comunicare cu clienții, într-un singur loc.",
-    type: "Client",
+    name: "Speranța Digital",
+    what: "Site-ul firmei de contabilitate din Tulcea: servicii, consultanță fiscală, salarizare — plus portalul de client pentru documente și termene.",
+    type: "Client · Live ↗",
+    href: "https://sperantadigital.ro",
   },
 ];
+
+function CaseBody({ c }: { c: Case }) {
+  return (
+    <>
+      <span className="gutter-num">{c.number}</span>
+      <h3>{c.name}</h3>
+      <div>
+        <p className="what">{c.what}</p>
+        {c.wa && (
+          <a
+            className="try"
+            href={waLink(c.wa)}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Testează pe WhatsApp ↗
+          </a>
+        )}
+      </div>
+      <span className="type">{c.type}</span>
+    </>
+  );
+}
 
 export default function Projects() {
   return (
@@ -83,7 +121,8 @@ export default function Projects() {
         </div>
         <p className="rv" style={{ color: "var(--ink-soft)", maxWidth: "34ch", fontSize: "18px" }}>
           Site-uri live, agenți AI în producție și produse proprii — fiecare
-          pornit dintr-o problemă reală, nu dintr-un template.
+          pornit dintr-o problemă reală, nu dintr-un template. Agenții îi poți
+          testa direct pe WhatsApp.
         </p>
       </div>
 
@@ -96,17 +135,11 @@ export default function Projects() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <span className="gutter-num">{c.number}</span>
-            <h3>{c.name}</h3>
-            <p className="what">{c.what}</p>
-            <span className="type">{c.type}</span>
+            <CaseBody c={c} />
           </a>
         ) : (
           <div key={c.number} className="case rv">
-            <span className="gutter-num">{c.number}</span>
-            <h3>{c.name}</h3>
-            <p className="what">{c.what}</p>
-            <span className="type">{c.type}</span>
+            <CaseBody c={c} />
           </div>
         )
       )}
