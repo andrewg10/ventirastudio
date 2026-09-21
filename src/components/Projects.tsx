@@ -73,8 +73,9 @@ const CASES: Case[] = [
   {
     number: "08",
     name: "FișaSintetică",
-    what: "Citește documentele fiscale din SPV — fișa pe plătitor, situația sintetică — și îți arată cât ai de plată și în ce cont se plătește. Pentru contabili și antreprenori.",
-    type: "Produs SaaS",
+    what: "Transformă Fișa Sintetică ANAF din SPV în Excel structurat, instant — solduri pe obligații, gata de analiză. Instrument pentru contabili și consultanți fiscali.",
+    type: "Produs SaaS · Live ↗",
+    href: "https://fisanaf.sperantadigital.ro",
   },
   {
     number: "09",
