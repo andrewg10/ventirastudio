@@ -72,7 +72,7 @@ const CASES: Case[] = [
   },
   {
     number: "08",
-    name: "FișaSintetică",
+    name: "FișaANAF",
     what: "Transformă Fișa Sintetică ANAF din SPV în Excel structurat, instant — solduri pe obligații, gata de analiză. Instrument pentru contabili și consultanți fiscali.",
     type: "Produs SaaS · Live ↗",
     href: "https://fisanaf.sperantadigital.ro",
