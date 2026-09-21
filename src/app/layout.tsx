@@ -46,6 +46,7 @@ const ORG_JSONLD = {
   "@context": "https://schema.org",
   "@type": "Organization",
   name: "Ventira Studio",
+  alternateName: ["VentiraStudio", "Ventira"],
   legalName: "Speranța Expert SRL",
   url: "https://www.ventirastudio.ro",
   logo: "https://www.ventirastudio.ro/ventira-logo-hero.png",
@@ -58,6 +59,16 @@ const ORG_JSONLD = {
     addressCountry: "RO",
   },
   areaServed: "RO",
+  telephone: "+40769292363",
+  contactPoint: {
+    "@type": "ContactPoint",
+    telephone: "+40769292363",
+    email: "contact@ventirastudio.ro",
+    contactType: "sales",
+    availableLanguage: ["Romanian", "English"],
+  },
+  // TODO: add real profile URLs (LinkedIn company page, Instagram, Facebook, GBP maps link)
+  sameAs: [],
 };
 
 export default function RootLayout({

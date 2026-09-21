@@ -69,3 +69,8 @@ Fix (≈10 min):
 - `@calcom/embed-react` dependency is unused (modal uses plain iframe) — removing requires lockfile regen; do `npm uninstall @calcom/embed-react` locally when convenient.
 - Pre-existing eslint style errors (unescaped `"` in JSX text, `any` types in CookieConsent, empty interface in blog.ts) — cosmetic, non-blocking.
 - Blog post title says "în 2025" — dated content, your call whether to refresh.
+
+## 2026-08-30 — SEO entity fixes (branded-search autocorrect)
+- `src/app/layout.tsx`: ORG_JSONLD extended — `alternateName` ["VentiraStudio","Ventira"], `telephone`, `contactPoint`, empty `sameAs` (TODO: fill with LinkedIn/Instagram/Facebook/GBP URLs).
+- `next.config.ts`: permanent redirect ventirastudio.ro → www.ventirastudio.ro (one canonical host).
+Why: Google autocorrects "Ventira Studio" → "Ventura"; stronger entity signals + single host fix it. `tsc --noEmit` passes.
