@@ -68,7 +68,6 @@ const CASES: Case[] = [
     name: "Ventira Agents",
     what: "Agenți AI de rezervări pe WhatsApp pentru saloane, clinici și service-uri. Programări, confirmări și reamintiri, fără recepție.",
     type: "Produs SaaS",
-    wa: "40769292363",
   },
   {
     number: "08",
