@@ -27,7 +27,7 @@ export default function Footer() {
           </Link>
         ))}
       </nav>
-      <span className="mono">București, România · {EMAIL}</span>
+      <span className="mono">Tulcea · București · {EMAIL}</span>
     </footer>
   );
 }

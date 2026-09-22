@@ -4,10 +4,14 @@ import "./globals.css";
 import CookieConsent from "@/components/CookieConsent";
 
 export const metadata: Metadata = {
-  title: "Ventira Studio · Sisteme AI și software care lucrează pentru tine",
+  title: "Ventira Studio · Agenți AI și site-uri · Tulcea & București",
   description:
-    "Automatizări AI, site-uri și aplicații construite la comandă pentru afaceri din România. Afacerea ta, pe pilot automat — iar tu comanzi.",
-  keywords: ["automatizare AI Romania", "agenti AI", "site-uri custom", "AI receptionist", "Ventira Studio"],
+    "Automatizări AI, site-uri și aplicații construite la comandă pentru afaceri din Tulcea, Dobrogea și București. Agenți WhatsApp în producție la restaurante, autogară și depozite. Afacerea ta, pe pilot automat — iar tu comanzi.",
+  keywords: [
+    "agentie AI Tulcea", "automatizare AI Tulcea", "creare site Tulcea", "site web Tulcea",
+    "agent WhatsApp restaurant", "agent AI rezervari", "automatizare AI Dobrogea", "automatizare AI Constanta",
+    "agentie AI Bucuresti", "site-uri custom", "AI receptionist", "Ventira Studio",
+  ],
   metadataBase: new URL("https://www.ventirastudio.ro"),
   openGraph: {
     title: "Ventira Studio · Sisteme AI și software care lucrează pentru tine",
@@ -21,7 +25,7 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Ventira Studio — Agenție AI din România",
+        alt: "Ventira Studio — Agenți AI și site-uri pentru afaceri din Tulcea, Dobrogea și București",
       },
     ],
   },
@@ -52,13 +56,25 @@ const ORG_JSONLD = {
   logo: "https://www.ventirastudio.ro/ventira-logo-hero.png",
   email: "contact@ventirastudio.ro",
   description:
-    "Automatizări AI, site-uri și aplicații construite la comandă pentru afaceri din România.",
+    "Automatizări AI, site-uri și aplicații construite la comandă pentru afaceri din Tulcea, Dobrogea și București.",
   address: {
     "@type": "PostalAddress",
     addressLocality: "București",
     addressCountry: "RO",
   },
-  areaServed: "RO",
+  location: [
+    { "@type": "Place", name: "Ventira Studio — Tulcea", address: { "@type": "PostalAddress", addressLocality: "Tulcea", addressRegion: "Tulcea", addressCountry: "RO" } },
+    { "@type": "Place", name: "Ventira Studio — București (punct de lucru)", address: { "@type": "PostalAddress", addressLocality: "București", addressCountry: "RO" } },
+  ],
+  areaServed: [
+    { "@type": "City", name: "Tulcea" },
+    { "@type": "City", name: "Constanța" },
+    { "@type": "City", name: "Brăila" },
+    { "@type": "City", name: "Galați" },
+    { "@type": "AdministrativeArea", name: "Dobrogea" },
+    { "@type": "City", name: "București" },
+    { "@type": "Country", name: "România" },
+  ],
   telephone: "+40769292363",
   contactPoint: {
     "@type": "ContactPoint",

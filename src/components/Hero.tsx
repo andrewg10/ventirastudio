@@ -25,7 +25,7 @@ export default function Hero() {
       <div className="wash gold" style={{ width: "640px", height: "640px", top: "-10%", right: "-12%" }} />
       <div className="wash blush" style={{ width: "520px", height: "520px", bottom: "8%", left: "-14%" }} />
       <div className="meta-line mono">
-        <span>Ventira Studio · București</span>
+        <span>Ventira Studio · Tulcea & București</span>
         <span>Software & AI · Made to order</span>
       </div>
       <h1>
@@ -36,8 +36,8 @@ export default function Hero() {
       <div className="hero-sub">
         <p className="rv">
           Automatizări AI, site-uri și aplicații scrise de la zero pentru
-          afaceri din România. Fără șabloane, fără promisiuni umflate —
-          sisteme care lucrează în locul tău, măsurabil.
+          afaceri din Tulcea, Dobrogea și București. Fără șabloane, fără
+          promisiuni umflate — sisteme care lucrează în locul tău, măsurabil.
         </p>
         <div className="cta-row rv">
           <a className="btn-ghost" href="#demo">Încearcă un demo viu ↓</a>
