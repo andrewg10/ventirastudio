@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const post = getPostBySlug(slug);
   if (!post) return { title: "404 — Ventira Studio" };
   return {
-    title: `${post.title} — Ventira Studio Blog`,
+    title: post.title,
     description: post.description,
     alternates: { canonical: `/blog/${slug}` },
   };

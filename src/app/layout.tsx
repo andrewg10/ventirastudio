@@ -1,12 +1,27 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { GeistMono } from "geist/font/mono";
+import { Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
 import CookieConsent from "@/components/CookieConsent";
+
+// Self-hosted at build time by next/font — no runtime request to Google Fonts (GDPR, C15).
+const cormorant = Cormorant_Garamond({
+  subsets: ["latin", "latin-ext"],
+  weight: ["400", "500", "600"],
+  style: ["normal", "italic"],
+  display: "swap",
+  variable: "--font-cormorant",
+  fallback: ["Georgia", "serif"],
+});
+
+export const viewport: Viewport = {
+  themeColor: "#FAF6EE",
+};
 
 export const metadata: Metadata = {
   title: "Ventira Studio · Agenți AI și site-uri · Tulcea & București",
   description:
-    "Automatizări AI, site-uri și aplicații construite la comandă pentru afaceri din Tulcea, Dobrogea și București. Agenți WhatsApp în producție la restaurante, autogară și depozite. Afacerea ta, pe pilot automat — iar tu comanzi.",
+    "Automatizări AI, site-uri și aplicații la comandă pentru afaceri din Tulcea, Dobrogea și București. Agenți WhatsApp în producție. Afacerea ta, pe pilot automat.",
   keywords: [
     "agentie AI Tulcea", "automatizare AI Tulcea", "creare site Tulcea", "site web Tulcea",
     "agent WhatsApp restaurant", "agent AI rezervari", "automatizare AI Dobrogea", "automatizare AI Constanta",
@@ -22,7 +37,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/og-image.png",
+        url: "/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "Ventira Studio — Agenți AI și site-uri pentru afaceri din Tulcea, Dobrogea și București",
@@ -33,7 +48,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Ventira Studio · Sisteme AI și software care lucrează pentru tine",
     description: "Afacerea ta, pe pilot automat — iar tu comanzi.",
-    images: ["/og-image.png"],
+    images: ["/og-image.jpg"],
   },
   icons: {
     icon: [
@@ -91,15 +106,8 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="ro" className={GeistMono.variable}>
+    <html lang="ro" className={`${GeistMono.variable} ${cormorant.variable}`}>
       <head>
-        {/* Cormorant Garamond */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap"
-          rel="stylesheet"
-        />
         {/*
           Google Consent Mode v2 — default DENIED pentru utilizatori EEA.
           Trebuie să fie primul script pe pagină, înaintea oricărui gtag/GA/Ads.

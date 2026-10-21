@@ -32,12 +32,14 @@
   --border: rgba(23, 19, 16, 0.12);
   --border-hover: rgba(168, 135, 75, 0.45);
 
-  --font-cormorant: 'Cormorant Garamond', Georgia, serif;
+  /* --font-cormorant is injected on <html> by next/font (layout.tsx) — self-hosted, no Google Fonts request */
 }
 
 html {
   color-scheme: light;
   scroll-behavior: auto;
+  /* .wash blobs and the hero ticker extend past the viewport; body-only overflow-x is ignored by iOS Safari */
+  overflow-x: clip;
 }
 
 body {

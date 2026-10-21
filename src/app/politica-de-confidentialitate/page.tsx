@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/politica-de-confidentialitate" },
 };
 
-const LAST_UPDATED = "29 martie 2025";
+const LAST_UPDATED = "21 octombrie 2026";
 
 export default function PoliticaConfidentialitate() {
   return (
@@ -89,13 +89,16 @@ export default function PoliticaConfidentialitate() {
             <p>Datele dumneavoastră pot fi transmise către:</p>
             <ul>
               <li><strong>Resend Inc.</strong> (resend.com) — furnizor de servicii email tranzacțional, utilizat pentru transmiterea mesajelor din formular. Datele sunt procesate conform politicii Resend și a acordului de prelucrare a datelor.</li>
-              <li><strong>Supabase Inc.</strong> — furnizor de infrastructură cloud cu servere în Uniunea Europeană, utilizat pentru stocarea datelor operaționale.</li>
-              <li><strong>Railway Corp.</strong> — furnizor de hosting pentru aplicația web, cu servere în UE.</li>
+              <li><strong>Railway Corp.</strong> (SUA) — furnizor de găzduire pentru aplicația web (serverul care primește formularul de contact și jurnalele tehnice).</li>
+              <li><strong>Cloudflare Inc.</strong> — DNS, CDN și protecție împotriva atacurilor; prelucrează adresa IP a vizitatorilor la nivel de rețea.</li>
+              <li><strong>Google Ireland Ltd.</strong> — Google Analytics 4 și Google Ads (măsurarea traficului și a conversiilor din campanii), <strong>numai dacă ați acceptat cookie-urile de analiză și publicitate</strong> din bannerul de consimțământ.</li>
               <li><strong>Cal.com / Cal.eu</strong> — platformă de programare a întâlnirilor, utilizată dacă alegeți să rezervați un apel.</li>
             </ul>
             <p>
               Nu vindem, nu închiriem și nu cedăm datele dumneavoastră personale către terți în scopuri de marketing.
-              Nu transferăm date în afara Spațiului Economic European fără garanții adecvate.
+              Unii dintre furnizorii de mai sus (Railway, Google, Cloudflare, Resend) pot prelucra date în Statele Unite ale Americii;
+              transferul se face în baza garanțiilor prevăzute de GDPR art. 45–46 (decizia de adecvare EU-US Data Privacy Framework
+              și/sau clauzele contractuale standard aprobate de Comisia Europeană).
             </p>
 
             <h2>5. Durata păstrării datelor</h2>
@@ -129,9 +132,14 @@ export default function PoliticaConfidentialitate() {
 
             <h2>7. Cookie-uri</h2>
             <p>
-              Site-ul ventirastudio.ro utilizează exclusiv cookie-uri tehnice strict necesare funcționării (sesiune, securitate).
-              Nu utilizăm cookie-uri de tracking, publicitate sau analiză comportamentală de la terți.
-              Nu este necesară obținerea consimțământului pentru cookie-urile strict necesare, conform Directivei ePrivacy.
+              Site-ul ventirastudio.ro folosește două categorii de cookie-uri și tehnologii similare:
+            </p>
+            <ul>
+              <li><strong>Strict necesare</strong> — securitate și funcționare (inclusiv memorarea alegerii dumneavoastră din bannerul de consimțământ). Nu necesită consimțământ (Legea 506/2004 art. 4 alin. 5).</li>
+              <li><strong>Analiză și publicitate</strong> — Google Analytics 4 și Google Ads (cookie-uri <code>_ga</code>, <code>_gcl_*</code> și similare), folosite pentru măsurarea traficului și a conversiilor din campaniile noastre. <strong>Se încarcă numai după ce apăsați „Accept”</strong> în bannerul de consimțământ; dacă alegeți „Refuz”, niciun script de analiză sau publicitate nu este încărcat. Folosim Google Consent Mode v2, cu toate categoriile refuzate implicit.</li>
+            </ul>
+            <p>
+              Vă puteți schimba oricând alegerea ștergând datele site-ului din browser (cookie-uri și stocare locală), după care bannerul va apărea din nou.
             </p>
 
             <h2>8. Securitatea datelor</h2>

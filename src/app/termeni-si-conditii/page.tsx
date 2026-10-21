@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/termeni-si-conditii" },
 };
 
-const LAST_UPDATED = "29 martie 2025";
+const LAST_UPDATED = "21 octombrie 2026";
 
 export default function TermeniConditii() {
   return (
@@ -147,9 +147,10 @@ export default function TermeniConditii() {
               Prezentele Termeni și Condiții sunt guvernate de legislația română. Orice litigiu se va soluționa pe cale amiabilă. În caz de eșec, competența revine instanțelor judecătorești române competente de la sediul Prestatorului.
             </p>
             <p>
-              Clienții persoane fizice din UE pot utiliza platforma de soluționare online a litigiilor:{" "}
-              <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener noreferrer">
-                ec.europa.eu/consumers/odr
+              Clienții persoane fizice (consumatori) se pot adresa Autorității Naționale pentru Protecția Consumatorilor (ANPC) și pot folosi
+              procedura de soluționare alternativă a litigiilor (SAL):{" "}
+              <a href="https://reclamatiisal.anpc.ro/" target="_blank" rel="noopener noreferrer">
+                reclamatiisal.anpc.ro
               </a>.
             </p>
 
