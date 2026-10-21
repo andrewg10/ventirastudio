@@ -12,7 +12,8 @@ export default function Services() {
           <p className="right rv">
             Preț fix, stabilit înainte să încep. Fiecare proiect include un
             plan de mentenanță — un sistem viu are nevoie de cineva care îl
-            ține viu. Prima discuție e gratuită.
+            ține viu. Prima discuție e gratuită. Prețurile afișate sunt finale —
+            firmă neplătitoare de TVA.
           </p>
         </div>
 

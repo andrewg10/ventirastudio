@@ -279,7 +279,7 @@ export default function ContactForm() {
           className="font-mono text-[12px] leading-[1.8]"
           style={{ color: "var(--cream-dim)", fontFamily: "var(--font-geist-mono, monospace)" }}
         >
-          Te contactăm în maxim 24 de ore în zilele lucrătoare.
+          Te contactăm în prima zi lucrătoare.
         </p>
       </div>
     );

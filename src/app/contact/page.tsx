@@ -24,7 +24,7 @@ export default function ContactPage() {
               <em style={{ fontStyle: "italic", color: "var(--gold)" }}>afacerea ta.</em>
             </h1>
             <p className="page-subtitle">
-              Completează formularul și te contactăm în maxim 24 de ore. Primul apel este gratuit — fără presiune, fără pitch agresiv.
+              Completează formularul și te contactăm în prima zi lucrătoare. Primul apel este gratuit — fără presiune, fără pitch agresiv.
             </p>
           </div>
           <div className="contact-grid">
@@ -34,7 +34,7 @@ export default function ContactPage() {
                 <span className="info-label">La ce să te aștepți</span>
                 <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "16px" }}>
                   {[
-                    { n: "01", t: "Răspundem în maxim 24 de ore în zilele lucrătoare." },
+                    { n: "01", t: "Răspundem în prima zi lucrătoare." },
                     { n: "02", t: "Programăm un apel de 30 min pentru a înțelege contextul." },
                     { n: "03", t: "Trimitem o propunere concretă cu timeline și costuri." },
                     { n: "04", t: "Dacă mergem mai departe, începem în 5-7 zile lucrătoare." },

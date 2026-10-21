@@ -32,8 +32,9 @@ export default function TermeniConditii() {
             <h2>1. Părțile contractante</h2>
             <p>
               Prezentele Termeni și Condiții reglementează relația dintre <strong>Speranța Expert SRL</strong>,
-              cu sediul în Str. Pacii 3, Bl. S2, Sc. B, Et. P, Ap. 01, cod poștal 820025, România,
-              CUI <strong>48785293</strong>, denumită în continuare „Ventira Studio" sau „Prestatorul",
+              cu sediul în Str. Păcii nr. 3, Bl. S2, Sc. B, Et. P, Ap. 01, Tulcea, cod poștal 820025, România,
+              înregistrată la Registrul Comerțului sub nr. <strong>J2023000405369</strong>, CUI <strong>48785293</strong>,
+              neplătitoare de TVA, denumită în continuare „Ventira Studio" sau „Prestatorul",
               și orice persoană fizică sau juridică care utilizează site-ul ventirastudio.ro sau serviciile oferite,
               denumită în continuare „Utilizatorul" sau „Clientul".
             </p>
@@ -87,7 +88,7 @@ export default function TermeniConditii() {
               <li>Să mențină disponibilitatea platformelor SaaS la minimum <strong>99% uptime lunar</strong>, excluzând mentenanța planificată anunțată în avans.</li>
               <li>Să notifice Clientul cu minimum 72 de ore înainte de orice intervenție planificată care poate afecta disponibilitatea serviciilor.</li>
               <li>Să păstreze confidențialitatea informațiilor și datelor Clientului.</li>
-              <li>Să răspundă solicitărilor de suport în maximum 24 de ore lucrătoare.</li>
+              <li>Să răspundă solicitărilor de suport în prima zi lucrătoare de la primire.</li>
             </ul>
 
             <h2>7. Obligațiile Clientului</h2>

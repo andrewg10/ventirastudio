@@ -147,7 +147,7 @@ export default function FooterCta() {
               </span>
               <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "14px" }}>
                 {[
-                  "Răspuns în maxim 24h în zilele lucrătoare.",
+                  "Răspuns în prima zi lucrătoare.",
                   "Apel de 30 min pentru a înțelege contextul.",
                   "Propunere concretă cu timeline și costuri.",
                   "Implementare în 5-7 zile dacă mergem mai departe.",

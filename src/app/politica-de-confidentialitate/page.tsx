@@ -32,8 +32,9 @@ export default function PoliticaConfidentialitate() {
             <h2>1. Identitatea operatorului</h2>
             <p>
               Datele dumneavoastră personale sunt prelucrate de <strong>Speranța Expert SRL</strong>,
-              cu sediul în Str. Pacii 3, Bl. S2, Sc. B, Et. P, Ap. 01, cod poștal 820025, România,
-              CUI <strong>48785293</strong>, denumită în continuare „Ventira Studio", „noi" sau „operatorul".
+              cu sediul în Str. Păcii nr. 3, Bl. S2, Sc. B, Et. P, Ap. 01, Tulcea, cod poștal 820025, România,
+              înregistrată la Registrul Comerțului sub nr. <strong>J2023000405369</strong>, CUI <strong>48785293</strong>,
+              denumită în continuare „Ventira Studio", „noi" sau „operatorul".
             </p>
             <p>
               Contact: <a href="mailto:contact@ventirastudio.ro">contact@ventirastudio.ro</a>

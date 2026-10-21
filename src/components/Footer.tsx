@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { EMAIL, LEGAL_NAME, CUI, WHATSAPP_DISPLAY, WHATSAPP_NUMBER } from "@/lib/site";
+import { EMAIL, LEGAL_NAME, CUI, REG_COM, SEDIU, VAT_NOTE, WHATSAPP_DISPLAY, WHATSAPP_NUMBER } from "@/lib/site";
 
 const LINKS = [
   { label: "Produse", href: "/produse" },
@@ -14,7 +14,7 @@ export default function Footer() {
     <footer className="site-footer">
       {/* Identitatea firmei — Legea 365/2002 art. 5: denumire, CUI, contact direct */}
       <span className="mono">
-        © {new Date().getFullYear()} Ventira Studio · {LEGAL_NAME} · CUI {CUI}
+        © {new Date().getFullYear()} Ventira Studio · {LEGAL_NAME} · {REG_COM} · CUI {CUI} · {SEDIU} · {VAT_NOTE}
       </span>
       <nav style={{ display: "flex", flexWrap: "wrap", gap: "24px" }}>
         {LINKS.map((l) => (

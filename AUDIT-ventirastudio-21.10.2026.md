@@ -105,6 +105,14 @@ Nu s-a produs ZIP: modificările sunt direct în repo (acces direct), listate ai
 4. **C2 / C4 / C8 — sediu, J, TVA** → îmi dai cele 3 date și le pun în 2 minute.
 5. C9 pictograma ANPC SAL (sau Termeni „exclusiv B2B"), C25 promisiunea de 24 h, S60 Dependabot, S48 uptime, S39 DMARC quarantine (21.11), T2 CSP enforce (28.10).
 
+## Update 21.10.2026 (după „da la toate")
+- **C24 ✅** — scoase `ai-receptionist-no-show-studiu-de-caz.mdx` și `5-procese-automatizare-ai-antreprenori-romania.mdx`; rămâne articolul de opinie (fără afirmații de rezultat).
+- **S43 ✅** — Railway `regions` → `europe-west4` (update-service, aplicat pe deployment-ul curent). Politica §4 poate reveni la „servere în UE" la următoarea revizie.
+- **S27 ✅ / ⚠️** — Next 16.2.1 → **16.4.2** (critical: DoS Server Components, bypass middleware), `@next/mdx`, `eslint-config-next` la fel; `@calcom/embed-react` scos (S28). Rămân 4 moderate (`sprintf-js`, tranzitiv, doar cu `--force`) — ⚠️ la următorul bump de Next. **Lockfile regenerat fără build local** — primul deploy Railway e testul; dacă pică, revert la commitul anterior.
+- **C2 / C4 / C8 ✅** — sediu (din ONRC via listafirme.eu: Str. Păcii 3, Bl. S2, Sc. B, Et. P, Ap. 01, Tulcea, 820025 — *nu* „nr. 1 / Sc. A" cum ți-l aminteai), J2023000405369, „neplătitoare de TVA — prețurile afișate sunt finale" în footer, Servicii, Termeni, Politică. **De confirmat J și sediul cu certificatul ORC.**
+- **C25 ✅** — „maxim 24 de ore" → „în prima zi lucrătoare" (contact, formular, FooterCta, Termeni §8).
+- Rămân: C9 pictograma SAL, S60 Dependabot (GitHub Settings), S48 uptime extern, T2 CSP enforce (28.10), S39 DMARC quarantine (21.11), T5 `sameAs`.
+
 ## Verificări după deploy (max. 5)
 1. `curl -sI https://www.ventirastudio.ro/` → `x-frame-options: DENY`, `referrer-policy`, `permissions-policy`, `content-security-policy-report-only` prezente, **fără** `x-powered-by`.
 2. Homepage în Chrome → Network: **niciun request către `fonts.googleapis.com` / `fonts.gstatic.com`**; titlurile sunt în Cormorant (nu Georgia) — dacă vezi Georgia, variabila `--font-cormorant` nu s-a propagat.
