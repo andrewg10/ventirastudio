@@ -74,3 +74,9 @@ Fix (≈10 min):
 - `src/app/layout.tsx`: ORG_JSONLD extended — `alternateName` ["VentiraStudio","Ventira"], `telephone`, `contactPoint`, empty `sameAs` (TODO: fill with LinkedIn/Instagram/Facebook/GBP URLs).
 - `next.config.ts`: permanent redirect ventirastudio.ro → www.ventirastudio.ro (one canonical host).
 Why: Google autocorrects "Ventira Studio" → "Ventura"; stronger entity signals + single host fix it. `tsc --noEmit` passes.
+
+## 25.10.2026 — LLM visibility (aplicat în repo)
+- `public/llms.txt` (nou): fișier standard la /llms.txt care spune LLM-urilor tot despre afacere (servicii, prețuri 2026, portofoliu, contact). Actualizează-l când se schimbă prețurile.
+- `src/components/FAQSection.tsx` (nou): FAQ server-rendered, fără GSAP (vizibil pentru crawlerele AI care nu rulează JS) + JSON-LD FAQPage.
+- `src/app/page.tsx`: <FAQSection /> adăugat înainte de ContactSection.
+`tsc --noEmit` trece. Stilizarea FAQ e neutră — de adaptat la Dark Sanctum dacă vrei.

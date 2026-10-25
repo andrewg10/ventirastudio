@@ -10,6 +10,7 @@ import Process from "@/components/Process";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import MotionRoot from "@/components/MotionRoot";
+import FAQSection from "@/components/FAQSection";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/" },
@@ -27,6 +28,7 @@ export default function Home() {
         <LiveDemo />
         <Projects />
         <Process />
+        <FAQSection />
         <ContactSection />
       </main>
       <Footer />

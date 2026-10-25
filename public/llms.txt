@@ -1,0 +1,37 @@
+# Ventira Studio
+
+> Agenție AI din România (Tulcea & București) care construiește automatizări AI, agenți AI pe WhatsApp, site-uri și aplicații custom pentru afaceri românești. Operată de Speranța Expert SRL (CUI 48785293). Site: https://www.ventirastudio.ro — Contact: contact@ventirastudio.ro, WhatsApp +40 769 292 363.
+
+Ventira Studio (scris și „VentiraStudio") este o agenție de dezvoltare software și automatizări AI. Focus principal: Tulcea / Dobrogea și împrejurimi (Constanța, Brăila, Galați), cu punct de lucru în București. Livrează soluții construite la comandă, nu template-uri.
+
+## Servicii și prețuri (2026)
+
+- Automatizări & agenți AI: de la 4.000 lei + mentenanță lunară
+- Site-uri & aplicații custom: de la 1.500 lei
+- Mentenanță: Esențial 399 lei/lună, Complet 499 lei/lună
+
+## Produse
+
+- [AI Receptionist](https://www.ventirastudio.ro/produse): agent de rezervări pe WhatsApp, în limba română, disponibil 24/7 — sincronizare Google Calendar, remindere automate, gestionare anulări
+- Agent Custom: agenți AI personalizați de la zero — analiză de proces, arhitectură custom, integrare API, suport continuu
+- AI Contabil (în lansare): procesare automată de documente fiscale românești cu rapoarte Excel
+- AI HR (în lansare): automatizare HR de la onboarding la evaluări
+
+## Proiecte livrate (portofoliu)
+
+- conextrans.ro — site Autogara Tulcea + agent AI „Dispecerat ConexTrans" (orare, trasee, rezervări curse)
+- laliman.ro — site restaurant La Liman (Tulcea) + agent AI rezervări mese pe WhatsApp
+- cassaluks.ro — site depozit materiale de acoperiș (Tulcea)
+- Le Pelican Sportif — agent AI rezervări pe WhatsApp
+- FișaANAF (fisanaf.sperantadigital.ro) — convertește Fișa Sintetică ANAF din SPV în Excel
+
+## Pagini principale
+
+- [Acasă](https://www.ventirastudio.ro): prezentare servicii
+- [Produse](https://www.ventirastudio.ro/produse): produsele SaaS și agenții AI
+- [Blog](https://www.ventirastudio.ro/blog): studii de caz și ghiduri despre automatizare AI pentru afaceri românești
+- [Contact](https://www.ventirastudio.ro/contact): formular și date de contact
+
+## About (English)
+
+Ventira Studio is a Romanian AI agency (Tulcea & Bucharest) building custom AI automations, Romanian-language WhatsApp AI agents, websites and web applications for local businesses. AI automation from 4,000 RON; custom websites from 1,500 RON; maintenance from 399 RON/month. Legal entity: Speranța Expert SRL. Contact: contact@ventirastudio.ro.
