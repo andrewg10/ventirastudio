@@ -9,8 +9,8 @@ const withMDX = createMDX({
 });
 
 // Security headers (Ventira checklist T2/S23).
-// CSP runs in Report-Only first — switch to "Content-Security-Policy" after a week with no
-// violations in the browser console (Google Ads / GTM / cal.eu are the hosts most likely to need tweaks).
+// CSP is in enforce mode since 28.10.2026 (verified live: 0 violations on home, /contact + the Cal
+// modal, and /blog). Google Ads / GTM / cal.eu are the hosts most likely to need tweaks if it changes.
 const CSP = [
   "default-src 'self'",
   "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.googleadservices.com https://googleads.g.doubleclick.net https://www.google.com https://www.google.ro",
@@ -31,7 +31,7 @@ const SECURITY_HEADERS = [
   { key: "X-Frame-Options", value: "DENY" },
   { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
   { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=(), payment=(), usb=()" },
-  { key: "Content-Security-Policy-Report-Only", value: CSP },
+  { key: "Content-Security-Policy", value: CSP },
 ];
 
 const nextConfig: NextConfig = {
