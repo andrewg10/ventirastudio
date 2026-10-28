@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/termeni-si-conditii" },
 };
 
-const LAST_UPDATED = "21 octombrie 2026";
+const LAST_UPDATED = "28 octombrie 2026";
 
 export default function TermeniConditii() {
   return (
@@ -35,11 +35,19 @@ export default function TermeniConditii() {
               cu sediul în Str. Păcii nr. 3, Bl. S2, Sc. B, Et. P, Ap. 01, Tulcea, cod poștal 820025, România,
               înregistrată la Registrul Comerțului sub nr. <strong>J2023000405369</strong>, CUI <strong>48785293</strong>,
               neplătitoare de TVA, denumită în continuare „Ventira Studio" sau „Prestatorul",
-              și orice persoană fizică sau juridică care utilizează site-ul ventirastudio.ro sau serviciile oferite,
+              și orice persoană juridică, PFA, II sau IF care contractează serviciile în cadrul activității sale profesionale,
               denumită în continuare „Utilizatorul" sau „Clientul".
             </p>
             <p>
+              Serviciile Ventira Studio se adresează exclusiv profesioniștilor (B2B). Nu contractăm cu consumatori
+              în sensul OUG 34/2014. Înainte de semnarea contractului solicităm datele de identificare ale firmei
+              (denumire, CUI).
+            </p>
+            <p>
               Prin utilizarea site-ului sau prin plasarea unei comenzi, Clientul acceptă în mod expres acești Termeni și Condiții.
+            </p>
+            <p>
+              Utilizarea site-ului de către orice vizitator este supusă acestor termeni în măsura în care se aplică navigării.
             </p>
 
             <h2>2. Descrierea serviciilor</h2>
@@ -72,14 +80,9 @@ export default function TermeniConditii() {
 
             <h2>5. Dreptul de retragere</h2>
             <p>
-              Conform OUG 34/2014, Clienții persoane fizice care contractează în afara activității lor profesionale beneficiază de un drept de retragere de <strong>14 zile calendaristice</strong> de la data contractării, fără invocarea unui motiv.
-            </p>
-            <p>
-              Dreptul de retragere nu se aplică serviciilor digitale a căror execuție a început cu acordul expres al Clientului și cu recunoașterea că pierde dreptul de retragere odată ce serviciul a fost complet prestat.
-            </p>
-            <p>
-              Pentru exercitarea dreptului de retragere, transmiteți o notificare clară la{" "}
-              <a href="mailto:contact@ventirastudio.ro">contact@ventirastudio.ro</a>.
+              Întrucât serviciile se prestează exclusiv către profesioniști, dreptul de retragere prevăzut de
+              OUG 34/2014 pentru consumatori nu se aplică. Condițiile de reziliere sunt stabilite în contractul
+              individual și în §11.
             </p>
 
             <h2>6. Obligațiile Prestatorului</h2>
@@ -146,13 +149,6 @@ export default function TermeniConditii() {
             <h2>12. Legea aplicabilă și litigii</h2>
             <p>
               Prezentele Termeni și Condiții sunt guvernate de legislația română. Orice litigiu se va soluționa pe cale amiabilă. În caz de eșec, competența revine instanțelor judecătorești române competente de la sediul Prestatorului.
-            </p>
-            <p>
-              Clienții persoane fizice (consumatori) se pot adresa Autorității Naționale pentru Protecția Consumatorilor (ANPC) și pot folosi
-              procedura de soluționare alternativă a litigiilor (SAL):{" "}
-              <a href="https://reclamatiisal.anpc.ro/" target="_blank" rel="noopener noreferrer">
-                reclamatiisal.anpc.ro
-              </a>.
             </p>
 
             <h2>13. Modificări ale termenilor</h2>

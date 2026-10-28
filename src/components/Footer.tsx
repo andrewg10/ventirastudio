@@ -27,15 +27,6 @@ export default function Footer() {
             {l.label}
           </Link>
         ))}
-        <a
-          href="https://reclamatiisal.anpc.ro/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="mono"
-          style={{ color: "var(--muted)", textDecoration: "none", letterSpacing: ".12em" }}
-        >
-          ANPC · SAL
-        </a>
       </nav>
       <span className="mono">
         Tulcea · București ·{" "}
