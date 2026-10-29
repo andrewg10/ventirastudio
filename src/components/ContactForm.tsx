@@ -2,21 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 
-const SERVICES = [
-  "AI Receptionist (produs SaaS)",
-  "Agent AI la comandă",
-  "Consultanță & strategie",
-  "Automatizare end-to-end",
-  "Nu știu încă / Vreau să discut",
-];
-
-const BUDGETS = [
-  "Sub 1.500 lei",
-  "1.500 – 4.000 lei",
-  "4.000 – 10.000 lei",
-  "Peste 10.000 lei",
-  "Prefer să discutăm",
-];
+import { SERVICES, BUDGETS, NAME_MAX } from "@/lib/contact-options";
 
 type State = "idle" | "loading" | "success" | "error";
 
@@ -198,6 +184,8 @@ export default function ContactForm() {
   const [serverError, setServerError] = useState("");
   const [gdprAccepted, setGdprAccepted] = useState(false);
   const [gdprError, setGdprError] = useState(false);
+  // Honeypot: invisible to humans, bots that fill every field get a silent fake success
+  const [website, setWebsite] = useState("");
   const ref = useRef<HTMLFormElement>(null);
 
   useEffect(() => {
@@ -219,6 +207,7 @@ export default function ContactForm() {
   function clientValidate(): boolean {
     const e: Partial<FormData> = {};
     if (!form.name.trim()) e.name = "Câmp obligatoriu";
+    else if (form.name.trim().length > NAME_MAX) e.name = `Maxim ${NAME_MAX} de caractere`;
     if (!form.email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email))
       e.email = "Email invalid";
     if (!form.service) e.service = "Selectează un serviciu";
@@ -240,7 +229,7 @@ export default function ContactForm() {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        body: JSON.stringify({ ...form, website }),
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error ?? "Eroare necunoscută");
@@ -287,6 +276,22 @@ export default function ContactForm() {
 
   return (
     <form ref={ref} onSubmit={handleSubmit} noValidate className="flex flex-col gap-6">
+      <div
+        aria-hidden="true"
+        style={{ position: "absolute", left: "-10000px", top: "auto", width: "1px", height: "1px", overflow: "hidden" }}
+      >
+        <label>
+          Website
+          <input
+            type="text"
+            name="website"
+            tabIndex={-1}
+            autoComplete="off"
+            value={website}
+            onChange={(e) => setWebsite(e.target.value)}
+          />
+        </label>
+      </div>
       {/* Row 1: Nume + Email */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 reveal">
         <Field label="Nume *" error={errors.name}>

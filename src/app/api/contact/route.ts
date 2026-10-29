@@ -1,19 +1,14 @@
 import { NextRequest, NextResponse } from "next/server";
 
+import { SERVICES, BUDGETS, NAME_MAX, BUDGET_MAX, MESSAGE_MAX } from "@/lib/contact-options";
+import { getClientIp } from "@/lib/origin-secret";
+
 // ─── In-memory rate limiter ───────────────────────────────────────────────────
 // Max 3 submissions per IP per 15 minutes.
 // Map is module-level — persists across requests in the same process.
 const RATE_MAP = new Map<string, { count: number; resetAt: number }>();
 const MAX_REQUESTS = 3;
 const WINDOW_MS = 15 * 60 * 1000; // 15 minutes
-
-function getClientIP(req: NextRequest): string {
-  return (
-    req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ??
-    req.headers.get("x-real-ip") ??
-    "unknown"
-  );
-}
 
 function checkRateLimit(ip: string): { allowed: boolean; retryAfter: number } {
   const now = Date.now();
@@ -44,6 +39,24 @@ function maybeCleanup() {
   }
 }
 
+// ─── Global daily cap ─────────────────────────────────────────────────────────
+// Backstop if the per-IP limiter is bypassed (rotating IPs): max DAILY_SEND_CAP emails per
+// UTC day per process. In-memory — resets on restart/redeploy, not shared across instances.
+const DAILY_SEND_CAP = 50;
+let capDay = "";
+let sentToday = 0;
+
+function reserveDailySend(): boolean {
+  const today = new Date().toISOString().slice(0, 10);
+  if (today !== capDay) {
+    capDay = today;
+    sentToday = 0;
+  }
+  if (sentToday >= DAILY_SEND_CAP) return false;
+  sentToday++;
+  return true;
+}
+
 // ─── Validation ───────────────────────────────────────────────────────────────
 
 interface ContactPayload {
@@ -52,6 +65,12 @@ interface ContactPayload {
   message: string;
   service: string;
   budget: string;
+  website: string;
+}
+
+/** Subject-safe: no CR/LF or control chars (header injection / garbled subjects). */
+function oneLine(value: string): string {
+  return value.replace(/[\r\n\t\u0000-\u001f\u007f]+/g, " ").trim();
 }
 
 /** Escape user input before interpolating into the HTML email */
@@ -65,14 +84,20 @@ function escapeHtml(value: string): string {
 }
 
 function validate(body: Partial<ContactPayload>): string | null {
-  if (!body.name?.trim()) return "Numele este obligatoriu.";
-  if (!body.email?.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(body.email))
+  const str = (v: unknown) => typeof v === "string";
+  if (!str(body.name) || !body.name.trim()) return "Numele este obligatoriu.";
+  if (body.name.trim().length > NAME_MAX) return `Numele poate avea maxim ${NAME_MAX} de caractere.`;
+  if (!str(body.email) || !body.email.trim() || body.email.length > 254 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(body.email))
     return "Adresa de email nu este validă.";
-  if (!body.message?.trim() || body.message.trim().length < 20)
+  if (!str(body.message) || body.message.trim().length < 20)
     return "Mesajul trebuie să aibă cel puțin 20 de caractere.";
-  if (!body.service) return "Te rugăm să selectezi un serviciu.";
   // Sanity check — prevent absurdly large payloads
-  if (body.message.length > 5000) return "Mesajul este prea lung.";
+  if (body.message.length > MESSAGE_MAX) return "Mesajul este prea lung.";
+  if (!str(body.service) || !SERVICES.includes(body.service)) return "Te rugăm să selectezi un serviciu.";
+  if (body.budget !== undefined && body.budget !== "") {
+    if (!str(body.budget) || body.budget.length > BUDGET_MAX || !BUDGETS.includes(body.budget))
+      return "Bugetul selectat nu este valid.";
+  }
   return null;
 }
 
@@ -80,7 +105,7 @@ function validate(body: Partial<ContactPayload>): string | null {
 
 export async function POST(req: NextRequest) {
   // Rate limit check
-  const ip = getClientIP(req);
+  const ip = getClientIp(req.headers);
   maybeCleanup();
   const { allowed, retryAfter } = checkRateLimit(ip);
 
@@ -106,6 +131,11 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Request invalid." }, { status: 400 });
   }
 
+  // Honeypot — bots get a fake success, nothing is sent
+  if (typeof body.website === "string" && body.website.trim()) {
+    return NextResponse.json({ success: true });
+  }
+
   // Validate
   const validationError = validate(body);
   if (validationError) {
@@ -118,13 +148,21 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ success: true });
   }
 
+  if (!reserveDailySend()) {
+    console.error(`[contact] Daily cap of ${DAILY_SEND_CAP} emails reached — sending blocked until tomorrow (UTC).`);
+    return NextResponse.json(
+      { error: "Formularul este temporar indisponibil. Scrie-ne direct la contact@ventirastudio.ro." },
+      { status: 503 }
+    );
+  }
+
   // Send email
   try {
     const { Resend } = await import("resend");
     const resend = new Resend(process.env.RESEND_API_KEY);
 
     const safe = {
-      name: escapeHtml(body.name!),
+      name: escapeHtml(body.name!.trim()),
       email: escapeHtml(body.email!),
       service: escapeHtml(body.service!),
       budget: escapeHtml(body.budget ?? ""),
@@ -135,7 +173,7 @@ export async function POST(req: NextRequest) {
       from: "Ventira Studio <noreply@ventirastudio.ro>",
       to: [process.env.CONTACT_EMAIL ?? "contact@ventirastudio.ro"],
       replyTo: body.email,
-      subject: `[Contact] ${body.name} — ${body.service}`,
+      subject: `[Contact] ${oneLine(body.name!)} — ${body.service}`,
       html: `
         <div style="font-family:monospace;max-width:600px;margin:0 auto;padding:32px;background:#080808;color:#F0E6D3;border:1px solid rgba(201,169,110,0.2);border-radius:8px;">
           <h2 style="color:#C9A96E;font-size:20px;margin-bottom:24px;font-weight:400;">Mesaj nou — Ventira Studio</h2>
