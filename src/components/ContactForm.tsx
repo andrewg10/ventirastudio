@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useSyncExternalStore } from "react";
 
 const SERVICES = [
   "AI Receptionist (produs SaaS)",
@@ -18,6 +18,20 @@ const BUDGETS = [
   "Prefer să discutăm",
 ];
 
+const PACHETE: Record<string, string> = {
+  esential: "Esențial",
+  complet: "Complet",
+  parteneriat: "Parteneriat",
+};
+const PACHET_OPTIONS = [...Object.values(PACHETE), "Nu știu încă"];
+
+// Maintenance plan preselected via /contact?pachet=esential|complet|parteneriat
+const noopSubscribe = () => () => {};
+function readUrlPachet(): string {
+  const slug = new URLSearchParams(window.location.search).get("pachet")?.toLowerCase();
+  return (slug && PACHETE[slug]) || "";
+}
+
 type State = "idle" | "loading" | "success" | "error";
 
 interface FormData {
@@ -25,10 +39,11 @@ interface FormData {
   email: string;
   service: string;
   budget: string;
+  pachet: string;
   message: string;
 }
 
-const EMPTY: FormData = { name: "", email: "", service: "", budget: "", message: "" };
+const EMPTY: FormData = { name: "", email: "", service: "", budget: "", pachet: "", message: "" };
 
 /* ---------- sub-components ---------- */
 
@@ -209,6 +224,10 @@ export default function ContactForm() {
     return () => observer.disconnect();
   }, []);
 
+  const urlPachet = useSyncExternalStore(noopSubscribe, readUrlPachet, () => "");
+  // The user's own choice wins over the URL preselection
+  const pachet = form.pachet || urlPachet;
+
   function set(key: keyof FormData) {
     return (v: string) => {
       setForm((f) => ({ ...f, [key]: v }));
@@ -240,7 +259,7 @@ export default function ContactForm() {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        body: JSON.stringify({ ...form, pachet }),
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error ?? "Eroare necunoscută");
@@ -318,7 +337,19 @@ export default function ContactForm() {
         </Field>
       </div>
 
-      {/* Row 3: Mesaj */}
+      {/* Row 3: Pachet de mentenanță */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 reveal" style={{ transitionDelay: "0.12s" }}>
+        <Field label="Pachet de mentenanță">
+          <Select
+            value={pachet}
+            onChange={set("pachet")}
+            options={PACHET_OPTIONS}
+            placeholder="Selectează (opțional)..."
+          />
+        </Field>
+      </div>
+
+      {/* Row 4: Mesaj */}
       <div className="reveal" style={{ transitionDelay: "0.16s" }}>
         <Field label="Mesaj *" error={errors.message}>
           <Textarea

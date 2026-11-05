@@ -29,4 +29,4 @@ export const LEGAL_NAME = "Speranța Expert SRL";
 export const CUI = "48785293";
 export const REG_COM = "J2023000405369";
 export const SEDIU = "Str. Păcii nr. 3, Bl. S2, Sc. B, Ap. 01, Tulcea";
-export const VAT_NOTE = "neplătitoare de TVA — prețurile afișate sunt finale";
+export const VAT_NOTE = "neplătitoare de TVA";

@@ -7,12 +7,12 @@ const FAQS: { q: string; a: string }[] = [
     a: "Ventira Studio este o agenție AI din România (Tulcea & București), operată de Speranța Expert SRL, care construiește automatizări AI, agenți AI pe WhatsApp, site-uri și aplicații custom pentru afaceri românești. Totul este construit la comandă, fără template-uri.",
   },
   {
-    q: "Cât costă o automatizare AI sau un agent AI?",
-    a: "Automatizările și agenții AI pornesc de la 4.000 lei, plus un abonament de mentenanță lunară (Esențial 399 lei/lună sau Complet 499 lei/lună). Prețul final se stabilește după o discuție de descoperire, în funcție de complexitatea procesului automatizat.",
+    q: "Cât costă o automatizare AI, un agent AI sau un site custom?",
+    a: "Prețul e fix și îl primești după o discuție gratuită de descoperire. Fiecare proiect include un pachet de mentenanță — Esențial, Complet sau Parteneriat. Exemple live: conextrans.ro, laliman.ro, cassaluks.ro.",
   },
   {
-    q: "Cât costă un site custom?",
-    a: "Site-urile și aplicațiile web construite la comandă pornesc de la 1.500 lei. Exemple live: conextrans.ro, laliman.ro, cassaluks.ro.",
+    q: "Ce pachet de mentenanță mi se potrivește?",
+    a: "Esențial e pentru un site care trebuie doar să meargă: găzduire, SSL, backup săptămânal, monitorizare 24/7 și actualizări de securitate. Complet e pentru afaceri care își actualizează des site-ul sau agentul: backup zilnic, răspuns în aceeași zi lucrătoare și până la 2 ore de modificări pe lună. Parteneriat e pentru afaceri care cresc pe sistemul construit: până la 6 ore de dezvoltare pe lună, intervenție în maxim 4 ore lucrătoare la incidente critice, audit de securitate trimestrial și un apel lunar cu recomandări.",
   },
   {
     q: "Ce face AI Receptionist?",

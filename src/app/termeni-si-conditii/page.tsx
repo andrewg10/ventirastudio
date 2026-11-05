@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/termeni-si-conditii" },
 };
 
-const LAST_UPDATED = "28 octombrie 2026";
+const LAST_UPDATED = "5 noiembrie 2026";
 
 export default function TermeniConditii() {
   return (
@@ -71,7 +71,8 @@ export default function TermeniConditii() {
 
             <h2>4. Prețuri și plăți</h2>
             <ul>
-              <li>Prețurile serviciilor sunt cele afișate pe site sau cele convenite prin ofertă scrisă acceptată de Client.</li>
+              <li>Prețurile serviciilor sunt cele stabilite prin ofertă scrisă acceptată de Client.</li>
+              <li>Pachetele de mentenanță (Esențial, Complet, Parteneriat) au conținutul descris pe site; costurile serviciilor terțe se facturează separat, la cost.</li>
               <li>Toate prețurile sunt exprimate în EUR sau RON și nu includ TVA, acolo unde este aplicabil.</li>
               <li>Plata se efectuează prin mijloacele indicate în ofertă sau în interfața produsului (card bancar prin Stripe, transfer bancar).</li>
               <li>Abonamentele SaaS se reînnoiesc automat la sfârșitul perioadei plătite. Clientul poate anula oricând, cu efect la finalul perioadei curente.</li>

@@ -52,6 +52,7 @@ interface ContactPayload {
   message: string;
   service: string;
   budget: string;
+  pachet?: string;
 }
 
 /** Escape user input before interpolating into the HTML email */
@@ -128,6 +129,7 @@ export async function POST(req: NextRequest) {
       email: escapeHtml(body.email!),
       service: escapeHtml(body.service!),
       budget: escapeHtml(body.budget ?? ""),
+      pachet: escapeHtml(String(body.pachet ?? "").slice(0, 60)),
       message: escapeHtml(body.message!),
     };
 
@@ -144,6 +146,7 @@ export async function POST(req: NextRequest) {
             <tr><td style="padding:8px 0;color:rgba(240,230,211,0.5);font-size:11px;text-transform:uppercase;letter-spacing:0.1em;vertical-align:top;">Email</td><td style="padding:8px 0;"><a href="mailto:${safe.email}" style="color:#C9A96E;">${safe.email}</a></td></tr>
             <tr><td style="padding:8px 0;color:rgba(240,230,211,0.5);font-size:11px;text-transform:uppercase;letter-spacing:0.1em;vertical-align:top;">Serviciu</td><td style="padding:8px 0;color:#F0E6D3;">${safe.service}</td></tr>
             <tr><td style="padding:8px 0;color:rgba(240,230,211,0.5);font-size:11px;text-transform:uppercase;letter-spacing:0.1em;vertical-align:top;">Buget</td><td style="padding:8px 0;color:#F0E6D3;">${safe.budget || "Nespecificat"}</td></tr>
+            <tr><td style="padding:8px 0;color:rgba(240,230,211,0.5);font-size:11px;text-transform:uppercase;letter-spacing:0.1em;vertical-align:top;">Pachet</td><td style="padding:8px 0;color:#F0E6D3;">${safe.pachet || "Nespecificat"}</td></tr>
             <tr><td style="padding:8px 0;color:rgba(240,230,211,0.5);font-size:11px;text-transform:uppercase;letter-spacing:0.1em;vertical-align:top;">Mesaj</td><td style="padding:8px 0;color:#F0E6D3;white-space:pre-wrap;">${safe.message}</td></tr>
           </table>
         </div>
