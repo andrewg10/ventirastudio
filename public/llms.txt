@@ -15,6 +15,7 @@ Ventira Studio (scris și „VentiraStudio") este o agenție de dezvoltare softw
 - Esențial — pentru un site care trebuie doar să meargă: găzduire, domeniu și SSL administrate, backup săptămânal (30 de zile), monitorizare 24/7, actualizări de securitate lunare, răspuns în prima zi lucrătoare, raport lunar
 - Complet — pentru afaceri care își actualizează des site-ul sau agentul: tot ce include Esențial, plus backup zilnic (30 de zile), răspuns în aceeași zi lucrătoare, până la 2 ore de modificări pe lună (inclusiv ajustări ale agentului AI), raport lunar de trafic
 - Parteneriat — pentru afaceri care cresc pe sistemul construit: tot ce include Complet, plus backup zilnic (90 de zile), intervenție în maxim 4 ore lucrătoare la incidente critice, până la 6 ore de dezvoltare pe lună, agent AI optimizat lunar, audit de securitate trimestrial, apel lunar de 30 de minute
+- La plata anuală, 2 luni sunt gratuite.
 - Funcționalitățile noi mari se ofertează separat. Costurile serviciilor terțe (WhatsApp/Meta, OpenAI, SMS, domeniu) se facturează la cost.
 
 ## Produse

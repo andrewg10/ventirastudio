@@ -120,6 +120,8 @@ export default function Services() {
             </p>
           </div>
 
+          <p className="plan-annual mono rv">Plătești anual? Primești 2 luni gratuite.</p>
+
           <div className="plan-grid rv">
             {PLANS.map((plan) => (
               <article
@@ -144,7 +146,8 @@ export default function Services() {
           <p className="plan-note rv">
             Funcționalitățile noi mari se ofertează separat. Orele nefolosite
             nu se reportează. Costurile serviciilor terțe (WhatsApp/Meta,
-            OpenAI, SMS, domeniu) se facturează la cost.
+            OpenAI, SMS, domeniu) se facturează la cost. La plata anuală, 2 luni
+            sunt gratuite.
           </p>
         </div>
       </div>

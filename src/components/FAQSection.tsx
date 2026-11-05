@@ -12,7 +12,7 @@ const FAQS: { q: string; a: string }[] = [
   },
   {
     q: "Ce pachet de mentenanță mi se potrivește?",
-    a: "Esențial e pentru un site care trebuie doar să meargă: găzduire, SSL, backup săptămânal, monitorizare 24/7 și actualizări de securitate. Complet e pentru afaceri care își actualizează des site-ul sau agentul: backup zilnic, răspuns în aceeași zi lucrătoare și până la 2 ore de modificări pe lună. Parteneriat e pentru afaceri care cresc pe sistemul construit: până la 6 ore de dezvoltare pe lună, intervenție în maxim 4 ore lucrătoare la incidente critice, audit de securitate trimestrial și un apel lunar cu recomandări.",
+    a: "Esențial e pentru un site care trebuie doar să meargă: găzduire, SSL, backup săptămânal, monitorizare 24/7 și actualizări de securitate. Complet e pentru afaceri care își actualizează des site-ul sau agentul: backup zilnic, răspuns în aceeași zi lucrătoare și până la 2 ore de modificări pe lună. Parteneriat e pentru afaceri care cresc pe sistemul construit: până la 6 ore de dezvoltare pe lună, intervenție în maxim 4 ore lucrătoare la incidente critice, audit de securitate trimestrial și un apel lunar cu recomandări. La plata anuală, 2 luni sunt gratuite.",
   },
   {
     q: "Ce face AI Receptionist?",
